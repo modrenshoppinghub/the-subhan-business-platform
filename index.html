@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhan Technical Studio // System Hub</title>
+    <title>Subhan Technical Studio // Advanced Node Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
-            --bg-base: #0b0f19;
-            --bg-surface: #131a2c;
-            --bg-card: #1a233d;
+            --bg-base: #070a13;
+            --bg-surface: #0f1626;
+            --bg-card: #17223b;
             --border-glow: rgba(14, 165, 233, 0.15);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
@@ -20,7 +20,7 @@
             --accent-purple: #a855f7;
             --accent-amber: #f59e0b;
             --accent-emerald: #10b981;
-            --border: #232d4b;
+            --border: #202b44;
         }
 
         * {
@@ -41,7 +41,7 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Webflow Style Custom Scrollbar */
+        /* Webflow Style Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -57,19 +57,17 @@
             background: var(--accent-cyan);
         }
 
-        /* Container Framework */
         .mainframe {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header System */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(11, 15, 25, 0.8);
+            background: rgba(7, 10, 19, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 16px 0;
@@ -89,10 +87,10 @@
         }
 
         .brand-logo {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -100,14 +98,14 @@
         }
 
         .brand-logo-inner {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: white;
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .brand-text {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             background: linear-gradient(to right, #fff, #94a3b8);
@@ -119,42 +117,25 @@
             background: var(--bg-surface);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-secondary);
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.3s ease;
         }
 
         .terminal-trigger:hover {
             color: var(--accent-cyan);
             border-color: rgba(14, 165, 233, 0.4);
             background: rgba(14, 165, 233, 0.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);
         }
 
-        /* Hero Deployment Zone */
+        /* Hero Layer */
         .hero {
-            padding: 96px 0 64px 0;
+            padding: 80px 0 48px 0;
             text-align: center;
             position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
-            z-index: -1;
-            pointer-events: none;
         }
 
         .badge-pill {
@@ -169,7 +150,6 @@
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 24px;
         }
 
@@ -199,174 +179,123 @@
         .hero p {
             color: var(--text-secondary);
             font-size: 1.15rem;
-            max-width: 640px;
+            max-width: 700px;
             margin: 0 auto 40px auto;
-            line-height: 1.6;
         }
 
-        .action-group {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
-            color: white;
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(14, 165, 233, 0.35);
-        }
-
-        /* Webflow Inspired Grid Matrix */
-        .showcase-section {
+        /* 20 Trending Skills Grid Architecture */
+        .skills-section {
             padding: 64px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 56px;
         }
 
         .section-title h2 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 12px;
         }
 
-        .section-title p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .showcase-grid {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            margin-bottom: 96px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
         }
 
-        .showcase-card {
+        .skill-card {
             background: var(--bg-surface);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .showcase-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(14, 165, 233, 0.2);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.35rem;
-            margin-bottom: 24px;
-            font-weight: bold;
-        }
-
-        .icon-thumb { background: rgba(239, 68, 68, 0.08); color: #ef4444; }
-        .icon-graphic { background: rgba(14, 165, 233, 0.08); color: var(--accent-cyan); }
-        .icon-writer { background: rgba(245, 158, 11, 0.08); color: var(--accent-amber); }
-
-        .showcase-card h3 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .showcase-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        /* 3D and High Conversion Preview Subsystems */
-        .preview-viewport {
-            background: #060913;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            aspect-ratio: 16/10;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: 1000px;
-        }
-
-        /* Thumbnail Live Component Mock up 3D Book */
-        .mock-thumbnail {
-            width: 140px;
-            height: 200px;
-            background: linear-gradient(135deg, #1e1e38 0%, #0c0c1d 100%);
-            border-radius: 2px 12px 12px 2px;
-            box-shadow: -10px 15px 25px rgba(0,0,0,0.6);
-            transform: rotateY(-20deg) rotateX(10deg);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 20px;
-            position: relative;
         }
 
-        .mock-thumbnail::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 8px; height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.3), transparent);
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(14, 165, 233, 0.25);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .book-line {
-            height: 4px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
-            width: 40px;
-        }
-
-        .book-text-mock {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
+        .skill-tag {
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #fff;
-            line-height: 1.2;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Contact Section */
+        .skill-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        /* Embedded Live Assets and Media Previews */
+        .preview-media-box {
+            width: 100%;
+            height: 130px;
+            background: #090d18;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .preview-media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover .preview-media-box img {
+            opacity: 0.85;
+        }
+
+        .preview-video-mock {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #0d1527, #1b2644);
+        }
+
+        .play-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+        }
+
+        /* Pipeline Input Matrix (Contact Form) */
         .contact-section {
             padding: 64px 0 96px 0;
         }
 
-        .contact-grid {
+        .contact-box {
             max-width: 600px;
             margin: 0 auto;
             background: var(--bg-surface);
@@ -376,17 +305,16 @@
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: var(--text-secondary);
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .form-control {
@@ -404,14 +332,32 @@
         .form-control:focus {
             outline: none;
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 12px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
         }
 
-        /* Admin Terminal Window Architecture */
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Admin Office Control Headquarters Overlay */
         .admin-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 7, 13, 0.9);
+            background: rgba(4, 6, 12, 0.95);
             backdrop-filter: blur(16px);
             z-index: 200;
             display: none;
@@ -424,29 +370,43 @@
             background: var(--bg-surface);
             border: 1px solid var(--border);
             width: 100%;
-            max-width: 1150px;
+            max-width: 1180px;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
         }
 
         .admin-header {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.25);
             padding: 18px 24px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .close-admin {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
+        .admin-office-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .exit-office-btn {
+            background: rgba(239, 104, 104, 0.1);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .exit-office-btn:hover {
+            background: #ef4444;
+            color: white;
         }
 
         .admin-body {
@@ -455,38 +415,40 @@
 
         .metrics-bar {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
             margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
         }
 
         .metric-tile {
             background: var(--bg-base);
             border: 1px solid var(--border);
             padding: 16px;
-            border-radius: 16px;
+            border-radius: 14px;
             text-align: center;
         }
 
         .metric-tile div {
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--accent-cyan);
             font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 4px;
         }
 
         .metric-tile span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* Split Workspace for Terminal & Integrated Map View */
+        /* Split Monitor Display: Network Stream Tracker & Leaflet Office Map Map */
         .workspace-split {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-columns: 1.16fr 0.84fr;
             gap: 24px;
             margin-bottom: 20px;
         }
@@ -496,34 +458,33 @@
         }
 
         .log-stream {
-            background: #070a14;
+            background: #050810;
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 16px;
-            height: 380px;
+            height: 360px;
             overflow-y: auto;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .log-item {
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            padding: 10px;
             cursor: pointer;
             border-radius: 8px;
-            transition: all 0.2s ease;
-            margin-bottom: 4px;
+            transition: background 0.2s;
         }
 
         .log-item:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
         }
 
         .map-view-container {
-            background: #070a14;
+            background: #050810;
             border: 1px solid var(--border);
             border-radius: 16px;
-            height: 380px;
+            height: 360px;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -542,8 +503,8 @@
         #liveAdminMap {
             width: 100%;
             height: 100%;
+            background: #070a14;
             z-index: 10;
-            background: #090d1a;
         }
 
         .map-placeholder-text {
@@ -555,23 +516,23 @@
             font-size: 0.85rem;
             width: 80%;
             z-index: 5;
-            line-height: 1.5;
         }
 
         .purge-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 12px 24px;
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid var(--border);
+            padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: 600;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
         }
 
         .purge-btn:hover {
-            opacity: 0.9;
+            border-color: #ef4444;
+            color: #ef4444;
         }
     </style>
 </head>
@@ -581,59 +542,255 @@
         <div class="mainframe nav-wrapper">
             <a href="#" class="brand">
                 <div class="brand-logo"><div class="brand-logo-inner"></div></div>
-                <div class="brand-text">SUBHAN STUDIO</div>
+                <div class="brand-text">SUBHAN TECHNICAL STUDIO</div>
             </a>
-            <button class="terminal-trigger" onclick="openAdminGate()">[⚡ ADMIN PANEL]</button>
+            <button class="terminal-trigger" onclick="openAdminGate()">[🛰️ ADMIN OFFICE]</button>
         </div>
     </header>
 
     <section class="mainframe hero">
-        <div class="badge-pill"><span></span>System Node Active</div>
-        <h1>High-End Digital Assets & <span>Creative Engineering</span></h1>
-        <p>Premium user interfaces, architectural layouts, and responsive components built for production-ready operations and scaling.</p>
-        <div class="action-group">
-            <button class="btn btn-primary" onclick="document.getElementById('secureForm').scrollIntoView();">Initialize Project</button>
-        </div>
+        <div class="badge-pill"><span></span>System Tracking Engine Online</div>
+        <h1>Next-Gen Core Platform for <span>Trending Digital Skills</span></h1>
+        <p>Architecting enterprise-grade pipelines, dynamic UI design vectors, and high-conversion assets. Complete telemetry and network nodes integrated natively inside the architecture hub.</p>
     </section>
 
-    <section class="mainframe showcase-section">
+    <section class="mainframe skills-section">
         <div class="section-title">
-            <h2>Core Technical Architecture</h2>
-            <p>Premium layouts engineered to retain user engagement patterns.</p>
+            <h2>Trending Matrix Blueprint</h2>
+            <p>20 High-demand tactical skills and enterprise capabilities deployed in real-time execution.</p>
         </div>
 
-        <div class="showcase-grid">
-            <div class="showcase-card">
-                <div class="card-icon icon-thumb">YT</div>
-                <h3>YouTube Asset Suite</h3>
-                <p>High click-through digital packaging and semantic layout maps.</p>
-                <div class="preview-viewport">
-                    <div style="width:70%; height:60%; background:rgba(239,68,68,0.1); border:1px dashed #ef4444; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#ef4444; font-size:0.8rem; font-family:'JetBrains Mono';">Live Canvas Asset</div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Intelligence</div>
+                    <h3>AI Prompt Engineering</h3>
+                    <p>Context design vectors, dynamic model configuration, and semantic execution alignment.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=400&q=80" alt="AI">
                 </div>
             </div>
 
-            <div class="showcase-card">
-                <div class="card-icon icon-graphic">UI</div>
-                <h3>3D Interface Layers</h3>
-                <p>Clean multi-dimensional presentation models with deep layout structures.</p>
-                <div class="preview-viewport">
-                    <div class="mock-thumbnail">
-                        <div class="book-line"></div>
-                        <div class="book-text-mock">THE SYSTEM<br>GUIDE</div>
-                        <div class="book-line" style="width:20px; background:var(--accent-purple);"></div>
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Design</div>
+                    <h3>3D UI Component Layout</h3>
+                    <p>Constructing spatial presentation models and clean structural dimensions.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
                     </div>
                 </div>
             </div>
 
-            <div class="showcase-card">
-                <div class="card-icon icon-writer">CW</div>
-                <h3>Conversion Engine</h3>
-                <p>Conversion-focused typography pipelines engineered to retain authority.</p>
-                <div class="preview-viewport">
-                    <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:var(--accent-amber); padding:20px; text-align:left; width:100%;">
-                        &gt; Initializing retention scripts...<br>
-                        &gt; Focus structural matrix (OK)<br>
-                        &gt; Loading dynamic canvas...
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Development</div>
+                    <h3>Full-Stack NextJS Core</h3>
+                    <p>Server-driven rendering layers and highly optimized component architecture.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Code">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Automation</div>
+                    <h3>No-Code API Workflows</h3>
+                    <p>Connecting complex webhooks and data pipelines via intelligent automation layers.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&w=400&q=80" alt="Data">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Cloud</div>
+                    <h3>DevOps Docker Containment</h3>
+                    <p>Isolating runtime environments and building clean dynamic server instances.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Growth</div>
+                    <h3>Semantic Funnel Mapping</h3>
+                    <p>Conversion engineering and user attention routing mechanics.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="SEO">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Security</div>
+                    <h3>Smart Contract Audits</h3>
+                    <p>Cryptographic structural logic checks and multi-layer decentralized network analysis.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80" alt="Crypto">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Media</div>
+                    <h3>Dynamic Motion Design</h3>
+                    <p>High engagement asset motion properties and programmatic timeline renders.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Intelligence</div>
+                    <h3>Neural Model Fine-Tuning</h3>
+                    <p>Injecting private weight vectors into open source transformer pipelines.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80" alt="Science">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Design</div>
+                    <h3>Webflow Advanced CMS</h3>
+                    <p>Production fluid responsive layouts integrated with structured database collections.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1581291518655-9523c932dedf?auto=format&fit=crop&w=400&q=80" alt="UX">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Architecture</div>
+                    <h3>Serverless Edge Functions</h3>
+                    <p>Deploying distributed script layers closer to node origins globally.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Data</div>
+                    <h3>Vector DB Integration</h3>
+                    <p>Structuring high-dimensional vector embeddings inside semantic search memories.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=400&q=80" alt="Server">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Marketing</div>
+                    <h3>Programmatic Ad Pipelines</h3>
+                    <p>Automated high-scale marketing bids powered by raw script parameters.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80" alt="Ad">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Cyber Security</div>
+                    <h3>Zero-Trust Frameworks</h3>
+                    <p>Enforcing strict validation constraints across all proxy endpoints.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Systems</div>
+                    <h3>GraphQL Unified APIs</h3>
+                    <p>Querying interconnected structured objects with optimal performance footprints.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=400&q=80" alt="Git">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Design</div>
+                    <h3>Figma Variable Engines</h3>
+                    <p>Constructing tokenized dynamic configurations inside cross-device design patterns.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=400&q=80" alt="Figma">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">E-Commerce</div>
+                    <h3>Headless Architecture</h3>
+                    <p>Decoupling interface designs from back-end transaction engines securely.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Management</div>
+                    <h3>Git GitOps Deployment</h3>
+                    <p>Managing global distributed system scaling steps using structural logic files.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=400&q=80" alt="Linux">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Analytics</div>
+                    <h3>Real-Time Telemetry Mapping</h3>
+                    <p>Logging distributed connection properties instantaneously across localized frameworks.</p>
+                </div>
+                <div class="preview-media-box">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Charts">
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div>
+                    <div class="skill-tag">Engineering</div>
+                    <h3>Micro-Frontend Microservices</h3>
+                    <p>Splitting giant user interfaces into isolated independently operating framework clusters.</p>
+                </div>
+                <div class="preview-media-box">
+                    <div class="preview-video-mock">
+                        <div class="play-indicator"><div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #fff;margin-left:2px;"></div></div>
                     </div>
                 </div>
             </div>
@@ -641,25 +798,25 @@
     </section>
 
     <section class="mainframe contact-section">
-        <div class="contact-grid">
+        <div class="contact-box">
             <div class="section-title" style="margin-bottom: 32px;">
-                <h2 style="font-size:1.75rem;">Initiate Safe Pipeline</h2>
-                <p>Transmit metadata payloads directly to local system framework.</p>
+                <h2 style="font-size:1.8rem;">Initialize Matrix Payload</h2>
+                <p>Submit details to execute target origin telemetry mapping loops.</p>
             </div>
             <form id="secureForm" onsubmit="handleFormSubmission(event)">
                 <div class="form-group">
-                    <label>Client Reference / Name</label>
+                    <label>Node Operator Name</label>
                     <input type="text" id="clientName" class="form-control" placeholder="e.g. Subhan" required>
                 </div>
                 <div class="form-group">
-                    <label>Secure Vector / Email</label>
-                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. client@studio.io" required>
+                    <label>Network Routing Email</label>
+                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. core@studio.net" required>
                 </div>
                 <div class="form-group">
-                    <label>Operational Message Matrix</label>
-                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Enter configuration data..." required></textarea>
+                    <label>Payload Message Stream</label>
+                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Type data stream configurations..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Transmit Data Node</button>
+                <button type="submit" class="btn-submit">Transmit Target Packet</button>
             </form>
         </div>
     </section>
@@ -667,22 +824,29 @@
     <div class="admin-modal" id="adminModal">
         <div class="admin-box">
             <div class="admin-header">
-                <span>🛰️ CORE GATEWAY CONTROL TERMINAL</span>
-                <button class="close-admin" onclick="closeAdminGate()">✕</button>
+                <span>🛰️ SUBHAN TECHNICAL STUDIO // SECURE NETWORK OFFICE</span>
+                <div class="admin-office-actions">
+                    <div id="officeStatusIndicator" style="font-size: 0.75rem; color: var(--accent-emerald); background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 4px;">• GEOLOCATION TRACKER ONLINE</div>
+                    <button class="exit-office-btn" onclick="closeAdminGate()">EXIT OFFICE</button>
+                </div>
             </div>
             <div class="admin-body">
                 <div class="metrics-bar">
                     <div class="metric-tile">
                         <div id="countMsg">0</div>
-                        <span>Total Payloads</span>
+                        <span>Logged Vectors</span>
                     </div>
                     <div class="metric-tile">
                         <div id="countGeo">0</div>
-                        <span>Unique Networks</span>
+                        <span>Tracked Regions</span>
                     </div>
                     <div class="metric-tile">
-                        <div id="systemState" style="color: var(--accent-emerald)">LIVE MAP ACTIVE</div>
-                        <span>Console Status</span>
+                        <div id="lastNodeIP">127.0.0.1</div>
+                        <span>Latest Gateway IP</span>
+                    </div>
+                    <div class="metric-tile">
+                        <div id="lastNodeISP" style="color: var(--accent-purple); font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-top: 6px;">Standby</div>
+                        <span>Active Backbone ISP</span>
                     </div>
                 </div>
 
@@ -690,15 +854,15 @@
                     <div class="log-stream" id="logStream"></div>
                     
                     <div class="map-view-container">
-                        <div class="map-header-status" id="mapTargetStatus">Map Core: Standby (Select target node)</div>
+                        <div class="map-header-status" id="mapTargetStatus">Office Map Core: Awaiting System Node Click...</div>
                         <div class="map-placeholder-text" id="mapPlaceholder">
-                            Click any user log data item on the left terminal to instantly track and view their precision map location point inside this dashboard.
+                            Click any captured telemetry data package in the left monitor log streaming grid to pinpoint location inside the office mapping matrix.
                         </div>
                         <div id="liveAdminMap"></div>
                     </div>
                 </div>
 
-                <button class="purge-btn" onclick="purgeSystemLogs()">Purge System Database</button>
+                <button class="purge-btn" onclick="purgeSystemLogs()">Wipe System Logs</button>
             </div>
         </div>
     </div>
@@ -734,6 +898,7 @@
             let email = document.getElementById('clientEmail').value;
             let msg = document.getElementById('clientMsg').value;
 
+            // Net Source Tracker Pipeline Engagement Layers
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     async (position) => {
@@ -742,66 +907,66 @@
                             lng: position.coords.longitude,
                             accuracy: position.coords.accuracy
                         };
-                        await processingStreamPipeline(name, email, msg, gpsData);
+                        await networkTrackerPipeline(name, email, msg, gpsData);
                     },
                     async () => {
-                        console.log("GPS vector permission denied. Dropping back to IP node telemetry.");
-                        await processingStreamPipeline(name, email, msg, null);
+                        console.log("GPS validation declined. Re-routing tracking logic into network IP data streams.");
+                        await networkTrackerPipeline(name, email, msg, null);
                     },
                     { enableHighAccuracy: true, timeout: 6000 }
                 );
             } else {
-                processingStreamPipeline(name, email, msg, null);
+                networkTrackerPipeline(name, email, msg, null);
             }
         }
 
-        async function processingStreamPipeline(name, email, msg, gpsData) {
-            let metadata = { ip: "127.0.0.1", country: "Local Network", city: "Loopback", isp: "Internal Host" };
+        async function networkTrackerPipeline(name, email, msg, gpsData) {
+            let trace = { ip: "127.0.0.1", country: "Local Loop", city: "Local Station", isp: "Internal Network Developer" };
             
             try {
                 let res = await fetch('https://ipapi.co/json/');
                 if (res.ok) {
-                    let d = await res.json();
-                    metadata.ip = d.ip || "Unknown";
-                    metadata.country = d.country_name || "Unknown Land";
-                    metadata.city = d.city || d.region || "Unknown Core";
-                    metadata.isp = d.org || "Unknown Provider";
+                    let data = await res.json();
+                    trace.ip = data.ip || "Unknown";
+                    trace.country = data.country_name || "Unknown Network";
+                    trace.city = data.city || data.region || "Unknown Zone";
+                    trace.isp = data.org || "Unknown ISP System";
                 }
             } catch (e) {
-                console.log("Network error fetching routing details.");
+                console.log("Telemetry collection handshake failure.");
             }
 
-            let packagePayload = {
+            let logObject = {
                 id: Date.now(),
                 name: name,
                 email: email,
                 msg: msg,
-                ip: metadata.ip,
-                country: metadata.country,
-                city: metadata.city,
-                isp: metadata.isp,
+                ip: trace.ip,
+                country: trace.country,
+                city: trace.city,
+                isp: trace.isp,
                 gps: gpsData,
-                time: new Date().toLocaleString()
+                timestamp: new Date().toLocaleString()
             };
 
-            let logs = JSON.parse(localStorage.getItem('studio_sys_logs')) || [];
-            logs.push(packagePayload);
-            localStorage.setItem('studio_sys_logs', JSON.stringify(logs));
+            let currentStorageLogs = JSON.parse(localStorage.getItem('subhan_studio_secure_logs')) || [];
+            currentStorageLogs.push(logObject);
+            localStorage.setItem('subhan_studio_secure_logs', JSON.stringify(currentStorageLogs));
 
-            alert(`Data Transmitted Successfully!\nNode Position Logged: [${metadata.city}, ${metadata.country}]`);
+            alert(`Handshake Completed Successfully.\nTarget registered at [${trace.city}, ${trace.country}]`);
             document.getElementById('secureForm').reset();
         }
 
         function openAdminGate() {
-            let authenticationString = prompt("Enter Terminal Handshake Access Token:");
-            if (authenticationString === "automation live ms") {
+            let passkey = prompt("Enter Administration Password Token:");
+            if (passkey === "automation live ms") {
                 document.getElementById('adminModal').style.display = 'flex';
                 setTimeout(() => {
                     if (mapCoreInstance) mapCoreInstance.invalidateSize();
                 }, 400);
                 renderAdminDashboard();
             } else {
-                alert("Security handshake mismatch. Access rejected.");
+                alert("Vector authorization handshake failure. Access denied.");
             }
         }
 
@@ -809,23 +974,32 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        function triggerInternalMapRender(lat, lng, label) {
-            document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${label} [${lat.toFixed(4)}, ${lng.toFixed(4)}]`;
+        function focusTargetMapCoordinates(lat, lng, operatorName) {
+            document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${operatorName} Core Node [${lat.toFixed(4)}, ${lng.toFixed(4)}]`;
             initializeMapCore(lat, lng);
         }
 
         function renderAdminDashboard() {
-            let logs = JSON.parse(localStorage.getItem('studio_sys_logs')) || [];
+            let logs = JSON.parse(localStorage.getItem('subhan_studio_secure_logs')) || [];
             document.getElementById('countMsg').innerText = logs.length;
             
-            let distinctNets = [...new Set(logs.map(l => l.country))];
-            document.getElementById('countGeo').innerText = distinctNets.length;
+            let trackingZones = [...new Set(logs.map(l => l.country))];
+            document.getElementById('countGeo').innerText = trackingZones.length;
 
-            let stream = document.getElementById('logStream');
-            stream.innerHTML = '';
+            if (logs.length > 0) {
+                let latestLog = logs[logs.length - 1];
+                document.getElementById('lastNodeIP').innerText = latestLog.ip;
+                document.getElementById('lastNodeISP').innerText = latestLog.isp;
+            } else {
+                document.getElementById('lastNodeIP').innerText = '127.0.0.1';
+                document.getElementById('lastNodeISP').innerText = 'Standby';
+            }
+
+            let streamContainer = document.getElementById('logStream');
+            streamContainer.innerHTML = '';
 
             if (logs.length === 0) {
-                stream.innerHTML = `<div style="color:var(--text-secondary); padding:12px;">Database register empty. Standard pipeline standing by...</div>`;
+                streamContainer.innerHTML = `<div style="color:var(--text-secondary); padding:12px;">No incoming connection packets found in system stack memory registers.</div>`;
                 return;
             }
 
@@ -833,30 +1007,30 @@
                 let div = document.createElement('div');
                 div.className = 'log-item';
                 
-                let coordinateVectorMarker = `<span style="color:#ef4444">[❌ Precision GPS Lock Denied]</span>`;
-                let interactionScript = `alert('This specific network node rejected browser GPS mapping telemetry permissions. Viewing network parameters only.');`;
+                let gpsStatusString = `<span style="color:#ef4444">[❌ GPS Tracking Suppressed]</span>`;
+                let clickMapLogicAction = `alert('User interface terminal rejected browser positioning triggers. Geolocation fallback linked only.');`;
 
                 if (log.gps) {
-                    coordinateVectorMarker = `<span style="color:var(--accent-emerald)">[🛰️ Precision GPS Lock Logged - Click to center Map]</span>`;
-                    interactionScript = `triggerInternalMapRender(${log.gps.lat}, ${log.gps.lng}, '${log.name}');`;
+                    gpsStatusString = `<span style="color:var(--accent-emerald)">[🛰️ GPS Precision Telemetry Captured - Click to locate]</span>`;
+                    clickMapLogicAction = `focusTargetMapCoordinates(${log.gps.lat}, ${log.gps.lng}, '${log.name}');`;
                 }
 
-                div.setAttribute('onclick', interactionScript);
+                div.setAttribute('onclick', clickMapLogicAction);
                 div.innerHTML = `
-                    <span style="color:var(--accent-purple)">[${log.time}]</span> <strong>Client: ${log.name}</strong> ${coordinateVectorMarker}<br>
-                    <span style="color:var(--accent-cyan)">&gt; Core Network Parameters: ${log.ip} (${log.city}, ${log.country})</span><br>
-                    <span style="color:var(--text-secondary)">&gt; Infrastructure ISP Backbone: ${log.isp}</span><br>
-                    <span style="color:#e2e8f0">&gt; Message Matrix Payload: ${log.msg}</span>
+                    <span style="color:var(--accent-purple)">[${log.timestamp}]</span> <strong>Operator Node: ${log.name}</strong> ${gpsStatusString}<br>
+                    <span style="color:var(--accent-cyan)">&gt; Net Source IP Trace: ${log.ip} (${log.city}, ${log.country})</span><br>
+                    <span style="color:var(--text-secondary)">&gt; Core Backbone Provider: ${log.isp}</span><br>
+                    <span style="color:#f1f5f9">&gt; Message Fragment Context: ${log.msg}</span>
                 `;
-                stream.appendChild(div);
+                streamContainer.appendChild(div);
             });
         }
 
         function purgeSystemLogs() {
-            if (confirm("Execute total wipe of local storage system files?")) {
-                localStorage.removeItem('studio_sys_logs');
+            if (confirm("Execute wiping sequences across entire tracking register storage?")) {
+                localStorage.removeItem('subhan_studio_secure_logs');
                 document.getElementById('mapPlaceholder').style.display = 'block';
-                document.getElementById('mapTargetStatus').innerText = 'Map Core: Standby';
+                document.getElementById('mapTargetStatus').innerText = 'Office Map Core: Standby';
                 if (mapCoreInstance) {
                     mapCoreInstance.remove();
                     mapCoreInstance = null;
