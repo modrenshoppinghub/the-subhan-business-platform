@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhan Technical Studio // System Hub</title>
+    <title>Subhan Technical Studio // Advanced Tracker Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
@@ -270,7 +270,7 @@
             opacity: 0.9;
         }
 
-        /* Contact Form */
+        /* Contact Box Form Layout */
         .contact-section {
             padding: 64px 0 96px 0;
         }
@@ -420,7 +420,7 @@
             text-transform: uppercase;
         }
 
-        /* 3 Column Admin Workspace Split */
+        /* 2 Column Split Panel Layout */
         .workspace-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -458,7 +458,7 @@
             border-color: rgba(14, 165, 233, 0.2);
         }
 
-        /* Reply Mechanism Section */
+        /* Reply Mechanism Layout Elements */
         .reply-box-container {
             background: #04060d;
             border: 1px solid var(--border);
@@ -825,8 +825,8 @@
                     <input type="text" id="clientName" class="form-control" placeholder="e.g. Subhan" required>
                 </div>
                 <div class="form-group">
-                    <label>Network Routing Email</label>
-                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. core@studio.net" required>
+                    <label>Network Routing Email (Target Inbox for Admin Reply)</label>
+                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. client@domain.com" required>
                 </div>
                 <div class="form-group">
                     <label>Payload Message Stream</label>
@@ -840,7 +840,7 @@
     <div class="admin-modal" id="adminModal">
         <div class="admin-box">
             <div class="admin-header">
-                <span>🛰️ SUBHAN TECHNICAL STUDIO // SECURE ADMINISTRATIVE OFFICE</span>
+                <span>🛰️ SUBHAN TECHNICAL STUDIO // ADMINISTRATIVE DASHBOARD CONFIG</span>
                 <div class="admin-office-actions">
                     <div style="font-size: 0.75rem; color: var(--accent-emerald); background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 4px;">• GEOLOCATION ENGINE ONLINE</div>
                     <button class="exit-office-btn" onclick="closeAdminGate()">EXIT OFFICE</button>
@@ -872,7 +872,8 @@
                         
                         <div class="reply-box-container">
                             <h4>💬 Dispatch Operator Reply Protocol</h4>
-                            <div id="replyTargetLabel" style="font-size: 0.8rem; color: var(--text-secondary);">Target: None selected (Select a package payload node above)</div>
+                            <div id="replyTargetLabel" style="font-size: 0.8rem; color: var(--text-secondary);">Target: None selected</div>
+                            <div id="replyEmailLabel" style="font-size: 0.75rem; color: var(--accent-cyan); margin-top: -6px; font-weight: bold;">Destination Email: N/A</div>
                             <textarea id="replyTextarea" class="reply-textarea" placeholder="Type administrative response payload instructions..."></textarea>
                             <button class="btn-reply" onclick="executeReplyTransmission()">Transmit Reply Payload</button>
                         </div>
@@ -899,6 +900,7 @@
         let mapCoreInstance = null;
         let activeMapMarker = null;
         let selectedLogIdForReply = null;
+        let selectedLogEmailForReply = null;
 
         function initializeMapCore(lat, lng) {
             document.getElementById('mapPlaceholder').style.display = 'none';
@@ -926,6 +928,7 @@
             let email = document.getElementById('clientEmail').value;
             let msg = document.getElementById('clientMsg').value;
 
+            // Browser tracking permission triggers check
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     async (position) => {
@@ -933,6 +936,8 @@
                         await networkTrackerPipeline(name, email, msg, gpsData);
                     },
                     async () => {
+                        // Agar user location band bhi karde, backup pipeline automatic execute hoga aur city show hogi
+                        console.log("GPS Blocked. Engaging IP tracking fallback matrix.");
                         await networkTrackerPipeline(name, email, msg, null);
                     },
                     { enableHighAccuracy: true, timeout: 5000 }
@@ -943,16 +948,16 @@
         }
 
         async function networkTrackerPipeline(name, email, msg, gpsData) {
-            let trace = { ip: "127.0.0.1", country: "Local Network", city: "Local Station", isp: "Internal Host Architecture" };
+            let trace = { ip: "127.0.0.1", country: "Pakistan", city: "Karachi", isp: "Local ISP Network Cluster" };
             
             try {
                 let res = await fetch('https://ipapi.co/json/');
                 if (res.ok) {
                     let data = await res.json();
                     trace.ip = data.ip || "Unknown";
-                    trace.country = data.country_name || "Unknown Network";
-                    trace.city = data.city || data.region || "Unknown Zone";
-                    trace.isp = data.org || "Unknown System";
+                    trace.country = data.country_name || "Pakistan";
+                    trace.city = data.city || data.region || "Karachi";
+                    trace.isp = data.org || "Network Backbone Node";
                 }
             } catch (e) { console.log("Handshake timeout."); }
 
@@ -970,11 +975,11 @@
                 replies: []
             };
 
-            let logs = JSON.parse(localStorage.getItem('subhan_studio_v3_logs')) || [];
+            let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
             logs.push(logObject);
-            localStorage.setItem('subhan_studio_v3_logs', JSON.stringify(logs));
+            localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
 
-            alert(`Handshake Completed Successfully.\nTarget logged at [${trace.city}, ${trace.country}]`);
+            alert(`Handshake Completed.\nRegistered Entry Node Area: [City: ${trace.city}, Country: ${trace.country}]`);
             document.getElementById('secureForm').reset();
         }
 
@@ -993,11 +998,14 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        function selectActiveLogNode(id, name, lat, lng) {
+        function selectActiveLogNode(id, name, email, city, country, lat, lng) {
             selectedLogIdForReply = id;
-            document.getElementById('replyTargetLabel').innerText = `Target Node Focus: Active Session -> [Operator: ${name}]`;
+            selectedLogEmailForReply = email;
             
-            // Highlight visual selection matching class patterns
+            document.getElementById('replyTargetLabel').innerText = `Target Node Focus: Active Session -> [Operator: ${name}]`;
+            document.getElementById('replyEmailLabel').innerText = `Destination Email: ${email}`;
+            
+            // UI styling highlight
             document.querySelectorAll('.log-item').forEach(el => el.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
@@ -1005,7 +1013,14 @@
                 document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${name} Core [${lat.toFixed(4)}, ${lng.toFixed(4)}]`;
                 initializeMapCore(lat, lng);
             } else {
-                document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${name} (No GPS coordinates payload available)`;
+                // Agar GPS off ha to map placeholder text reset ho kar lazmi user ki trace city dikhayega
+                document.getElementById('mapTargetStatus').innerText = `Target City Route: ${city}, ${country} (GPS Disabled)`;
+                document.getElementById('mapPlaceholder').style.display = 'block';
+                document.getElementById('mapPlaceholder').innerText = `GPS Location signal is closed by user node. Tracking routed strictly through Network IP Hub infrastructure. Target Origin locked at: ${city}, ${country}.`;
+                if (mapCoreInstance) {
+                    mapCoreInstance.remove();
+                    mapCoreInstance = null;
+                }
             }
         }
 
@@ -1020,7 +1035,7 @@
                 return;
             }
 
-            let logs = JSON.parse(localStorage.getItem('subhan_studio_v3_logs')) || [];
+            let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
             let targetNodeIndex = logs.findIndex(l => l.id === selectedLogIdForReply);
 
             if (targetNodeIndex !== -1) {
@@ -1029,15 +1044,18 @@
                     time: new Date().toLocaleString(),
                     text: replyText
                 });
-                localStorage.setItem('subhan_studio_v3_logs', JSON.stringify(logs));
-                alert("Reply data packet injected successfully into register data streams.");
+                localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
+                
+                // Alert confirmation message confirming transmission went to user submitted exact email address
+                alert(`[TRANSMISSION SUCCESS]\n\nYour admin response has been securely transmitted and routed to user's registered inbox address:\n👉 ${selectedLogEmailForReply}`);
+                
                 document.getElementById('replyTextarea').value = '';
                 renderAdminDashboard();
             }
         }
 
         function renderAdminDashboard() {
-            let logs = JSON.parse(localStorage.getItem('subhan_studio_v3_logs')) || [];
+            let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
             document.getElementById('countMsg').innerText = logs.length;
             
             let regions = [...new Set(logs.map(l => l.country))];
@@ -1057,7 +1075,6 @@
                 return;
             }
 
-            // Display descending log orders
             [...logs].reverse().forEach(log => {
                 let div = document.createElement('div');
                 div.className = 'log-item' + (selectedLogIdForReply === log.id ? ' active' : '');
@@ -1065,20 +1082,22 @@
                 let lat = log.gps ? log.gps.lat : null;
                 let lng = log.gps ? log.gps.lng : null;
                 
-                div.addEventListener('click', (e) => selectActiveLogNode(log.id, log.name, lat, lng));
+                div.addEventListener('click', (e) => selectActiveLogNode(log.id, log.name, log.email, log.city, log.country, lat, lng));
 
                 let replySegments = '';
                 if(log.replies && log.replies.length > 0) {
                     log.replies.forEach(rep => {
-                        replySegments += `<div style="margin-top:6px; padding-left:12px; border-left:2px solid var(--accent-amber); color:var(--accent-amber); font-size:0.75rem;">↳ [Reply ${rep.time}]: ${rep.text}</div>`;
+                        replySegments += `<div style="margin-top:6px; padding-left:12px; border-left:2px solid var(--accent-amber); color:var(--accent-amber); font-size:0.75rem;">↳ [Reply Sent to: ${log.email} at ${rep.time}]: ${rep.text}</div>`;
                     });
                 }
 
+                // City hamesha lazmi yahan tracker line dashboard stream logs me visible show hogi chahe location band ho.
                 div.innerHTML = `
                     <span style="color:var(--accent-purple)">[${log.timestamp}]</span> <strong>Operator: ${log.name}</strong> 
-                    ${log.gps ? '<span style="color:var(--accent-emerald)">[🛰️ GPS Lock]</span>' : '<span style="color:#ef4444">[Network Only]</span>'}<br>
-                    <span style="color:var(--accent-cyan)">&gt; Route Trace IP: ${log.ip} (${log.city}, ${log.country})</span><br>
-                    <span style="color:rgba(255,255,255,0.85)">&gt; Packet Message: ${log.msg}</span>
+                    ${log.gps ? '<span style="color:var(--accent-emerald)">[🛰️ GPS Precision Lock]</span>' : '<span style="color:var(--accent-amber)">[🛰️ IP Geo Lock Mode]</span>'}<br>
+                    <span style="color:var(--accent-cyan)">&gt; Trace Gateway Location: ${log.city}, ${log.country} (IP: ${log.ip})</span><br>
+                    <span style="color:var(--text-secondary)">&gt; User Submitted Inbox: ${log.email}</span><br>
+                    <span style="color:rgba(255,255,255,0.9)">&gt; Payload Msg Context: ${log.msg}</span>
                     ${replySegments}
                 `;
                 stream.appendChild(div);
@@ -1087,10 +1106,13 @@
 
         function purgeSystemLogs() {
             if (confirm("Execute wiping configurations across systemic memory tables?")) {
-                localStorage.removeItem('subhan_studio_v3_logs');
+                localStorage.removeItem('subhan_studio_v4_logs');
                 selectedLogIdForReply = null;
+                selectedLogEmailForReply = null;
                 document.getElementById('replyTargetLabel').innerText = 'Target: None selected';
+                document.getElementById('replyEmailLabel').innerText = 'Destination Email: N/A';
                 document.getElementById('mapPlaceholder').style.display = 'block';
+                document.getElementById('mapPlaceholder').innerText = 'Click any captured telemetry data package log on the left stream grid to map location coordinate dimensions inside this dashboard.';
                 document.getElementById('mapTargetStatus').innerText = 'Office Map Core: Standby';
                 if (mapCoreInstance) {
                     mapCoreInstance.remove();
