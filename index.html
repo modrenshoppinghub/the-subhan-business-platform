@@ -33,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* Technical Grid Background */
         body::before {
             content: '';
             position: fixed;
@@ -126,10 +125,8 @@
             font-size: 2rem;
             margin-bottom: 2.5rem;
             text-align: center;
-            position: relative;
         }
 
-        /* Advanced Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -174,7 +171,6 @@
             font-size: 0.95rem;
         }
 
-        /* HIGH-CONVERTING BOOK PREVIEW SECTION */
         .preview-showcase {
             background: radial-gradient(circle at top right, rgba(79,70,229,0.1), transparent), var(--surface-dark);
             border: 1px solid var(--border);
@@ -195,7 +191,6 @@
             .hero h1 { font-size: 2.5rem; }
         }
 
-        /* Photorealistic 3D Style Book Cover Asset */
         .book-wrapper {
             perspective: 1200px;
             display: flex;
@@ -219,7 +214,6 @@
             overflow: hidden;
         }
 
-        /* Realistic Spine Edge Shadow */
         .book-cover::after {
             content: '';
             position: absolute;
@@ -256,7 +250,6 @@
             padding-top: 1rem;
         }
 
-        /* Live Preview Read Screen */
         .preview-content-box {
             display: flex;
             flex-direction: column;
@@ -299,10 +292,8 @@
             overflow-y: auto;
             font-size: 0.95rem;
             color: #cbd5e1;
-            position: relative;
         }
 
-        /* Elegant Form Structure */
         .contact-section {
             max-width: 600px;
             margin: 0 auto 6rem;
@@ -331,7 +322,6 @@
             padding: 0.85rem 1rem;
             color: #fff;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
@@ -367,14 +357,14 @@
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .admin-box {
             background: var(--surface-dark);
             border: 1px solid var(--border);
             width: 100%;
-            max-width: 850px;
+            max-width: 1100px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
@@ -399,7 +389,7 @@
         }
 
         .admin-body {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .metrics-bar {
@@ -416,13 +406,13 @@
         .metric-tile {
             background: rgba(0,0,0,0.2);
             border: 1px solid var(--border);
-            padding: 1.2rem;
+            padding: 1rem;
             border-radius: 12px;
             text-align: center;
         }
 
         .metric-tile div {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--accent);
             font-family: 'JetBrains Mono', monospace;
@@ -433,7 +423,6 @@
             color: var(--text-muted);
         }
 
-        /* Search Control Frame */
         .admin-controls {
             display: flex;
             gap: 1rem;
@@ -459,12 +448,18 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: all 0.2s ease;
         }
 
-        .action-bar-btn:hover {
-            border-color: var(--accent);
-            background: rgba(6, 182, 212, 0.1);
+        /* Split Screen Architecture for Map View */
+        .workspace-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 850px) {
+            .workspace-split { grid-template-columns: 1fr; }
         }
 
         .log-stream {
@@ -472,7 +467,7 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 1rem;
-            height: 280px;
+            height: 350px;
             overflow-y: auto;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
@@ -482,24 +477,51 @@
         .log-item {
             border-bottom: 1px solid rgba(255,255,255,0.05);
             padding: 0.75rem 0;
+            cursor: pointer;
+            transition: background 0.2s ease;
         }
 
-        .maps-link {
-            display: inline-block;
-            background: rgba(79, 70, 229, 0.2);
-            border: 1px solid var(--primary);
-            color: #cbd5e1;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            text-decoration: none;
-            margin-top: 0.4rem;
-            font-size: 0.75rem;
-            transition: all 0.2s ease;
+        .log-item:hover {
+            background: rgba(255,255,255,0.02);
         }
 
-        .maps-link:hover {
-            background: var(--primary);
-            color: #fff;
+        /* Map Embed Interface */
+        .map-view-container {
+            background: #07080d;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-header-status {
+            background: rgba(0,0,0,0.5);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            border-bottom: 1px solid var(--border);
+            color: var(--accent);
+        }
+
+        .live-iframe-map {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #121420;
+        }
+
+        .map-placeholder-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 0.9rem;
+            pointer-events: none;
+            width: 80%;
         }
 
         .purge-btn {
@@ -510,7 +532,6 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 0.85rem;
-            margin-top: 1rem;
             font-weight: 500;
         }
     </style>
@@ -548,7 +569,6 @@
         <h2 class="section-title">Premium Document Preview</h2>
         <div class="preview-showcase">
             <div class="preview-container">
-                
                 <div class="book-wrapper">
                     <div class="book-cover">
                         <div class="book-badge">Elite Series</div>
@@ -565,10 +585,8 @@
                         <button class="tab-btn active" onclick="switchPreview('book')">BOOK EXTRACT</button>
                         <button class="tab-btn" onclick="switchPreview('vector')">VECTOR STRUC</button>
                     </div>
-                    <div class="display-monitor" id="previewMonitor">
-                        </div>
+                    <div class="display-monitor" id="previewMonitor"></div>
                 </div>
-
             </div>
         </div>
 
@@ -596,7 +614,7 @@
     <div class="admin-modal" id="adminModal">
         <div class="admin-box">
             <div class="admin-header">
-                <span>🛰️ SECURE NODE CORE CONSOLE</span>
+                <span>🛰️ SECURE NODE CORE CONSOLE (INTEGRATED MAP EDITION)</span>
                 <button class="close-admin" onclick="closeAdminGate()">✕</button>
             </div>
             <div class="admin-body">
@@ -610,18 +628,30 @@
                         <span>Unique Country Nodes</span>
                     </div>
                     <div class="metric-tile">
-                        <div id="systemState" style="color: var(--success)">HYBRID ACTIVE</div>
+                        <div id="systemState" style="color: var(--success)">MAP CORE LOGGED</div>
                         <span>Tracking Gateway</span>
                     </div>
                 </div>
 
                 <div class="admin-controls">
-                    <input type="text" id="adminSearchInput" class="admin-search" placeholder="Filter logs by Name, Country, IP or GPS..." oninput="renderAdminDashboard()">
+                    <input type="text" id="adminSearchInput" class="admin-search" placeholder="Filter logs by Name, Country, IP..." oninput="renderAdminDashboard()">
                     <button class="action-bar-btn" onclick="exportDataLogs()">📥 Backup Logs</button>
                 </div>
 
-                <div class="log-stream" id="logStream">
+                <div class="workspace-split">
+                    
+                    <div class="log-stream" id="logStream"></div>
+                    
+                    <div class="map-view-container">
+                        <div class="map-header-status" id="mapTargetStatus">Map Status: Idle (Select log node)</div>
+                        <div class="map-placeholder-text" id="mapPlaceholder">
+                            Click any log item on the left to instantly load its live geographical position on the Map framework.
+                        </div>
+                        <iframe class="live-iframe-map" id="liveAdminMap" src=""></iframe>
                     </div>
+
+                </div>
+
                 <button class="purge-btn" onclick="purgeSystemLogs()">Purge System Logs</button>
             </div>
         </div>
@@ -630,7 +660,7 @@
     <script>
         const contentPool = {
             book: `[DOCUMENT OVERVIEW: THE DIGITAL BLUEPRINT]\n-----------------------------------------\nChapter 1: The architecture of human conversion profiles depends on fluid layout vectors.\n\nBy prioritizing modular, highly functional elements over decorative fillers, your operational interfaces command subconscious authority. This document builds upon strategic structures that enforce user attention execution...`,
-            vector: `[SYSTEM DIAGRAM LOG: VECTOR STRUCTURES]\n-----------------------------------------\n> LAYER 01: Core UI Node Alignment (OK)\n> LAYER 02: Dynamic Canvas Matrix Layer (Rendered)\n> SVG Engine: Complex rendering calculation pathing active.\n> Vector Buffer Array: [0x1F, 0x2B, 0x4C, 0x8E]\n> Display status: System layout is perfectly responsive.`
+            vector: `[SYSTEM DIAGRAM LOG: VECTOR STRUCTURES]\n-----------------------------------------\n> LAYER 01: Core UI Node Alignment (OK)\n> LAYER 02: Dynamic Canvas Matrix Layer (Rendered)\n> SVG Engine: Complex rendering calculation pathing active.\n> Display status: System layout is perfectly responsive.`
         };
 
         document.getElementById('previewMonitor').innerText = contentPool.book;
@@ -649,19 +679,18 @@
             let email = document.getElementById('clientEmail').value;
             let msg = document.getElementById('clientMsg').value;
 
-            // Step 1: Request exact high-accuracy GPS logs if browser permits
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     async (position) => {
                         let gpsCoords = {
                             lat: position.coords.latitude,
-                            lng: position.coords.longitude,
+                            longitude: position.coords.longitude,
                             accuracy: position.coords.accuracy
                         };
                         await executeLogPipeline(name, email, msg, gpsCoords);
                     },
                     async (error) => {
-                        console.log("GPS node permission rejected. Falling back to IP tracking stream.");
+                        console.log("GPS link disabled. Using IP node fallback stream.");
                         await executeLogPipeline(name, email, msg, null);
                     },
                     { enableHighAccuracy: true, timeout: 6000 }
@@ -672,7 +701,7 @@
         }
 
         async function executeLogPipeline(name, email, msg, gpsData) {
-            let geoData = { ip: "Unknown", country: "Local Loopback", region: "Unknown", isp: "Unknown Server Node", code: "XX" };
+            let geoData = { ip: "Unknown", country: "Local Loopback", region: "Unknown", isp: "Unknown Node", code: "XX" };
             
             try {
                 let response = await fetch('https://ipapi.co/json/');
@@ -685,7 +714,7 @@
                     geoData.code = data.country_code || "XX";
                 }
             } catch(e) {
-                console.log("Routing network routing error.");
+                console.log("Routing tracer data error.");
             }
 
             let logPayload = {
@@ -698,7 +727,7 @@
                 region: geoData.region,
                 isp: geoData.isp,
                 code: geoData.code,
-                gps: gpsData, // Saved exact GPS data if available
+                gps: gpsData,
                 timestamp: new Date().toLocaleString()
             };
 
@@ -706,11 +735,7 @@
             existingLogs.push(logPayload);
             localStorage.setItem('studio_logs', JSON.stringify(existingLogs));
 
-            let alertString = `Transmission complete.\nNode Registered: [${geoData.region}, ${geoData.country}]`;
-            if (gpsData) {
-                alertString += `\nPrecision GPS Lock Acquired successfully!`;
-            }
-            alert(alertString);
+            alert(`Transmission complete.\nNode Status: Target logged from [${geoData.region}, ${geoData.country}]`);
             document.getElementById('secureForm').reset();
         }
 
@@ -720,7 +745,7 @@
                 document.getElementById('adminModal').style.display = 'flex';
                 renderAdminDashboard();
             } else {
-                alert("Handshake denied. Network access vector rejected.");
+                alert("Handshake denied. Vector rejected.");
             }
         }
 
@@ -728,16 +753,23 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
+        function loadMapLocationFrame(lat, lng, label) {
+            document.getElementById('mapPlaceholder').style.display = 'none';
+            document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${label} (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
+            
+            // Standard dynamic map frame url calculation mapping pipeline
+            let mapUrl = `https://maps.google.com/maps?q=${lat},${lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+            document.getElementById('liveAdminMap').src = mapUrl;
+        }
+
         function renderAdminDashboard() {
             let logs = JSON.parse(localStorage.getItem('studio_logs')) || [];
             let filterText = document.getElementById('adminSearchInput').value.toLowerCase();
             
             let filteredLogs = logs.filter(log => {
-                let hasGpsString = log.gps ? `gps lat:${log.gps.lat} lng:${log.gps.lng}` : '';
                 return log.name.toLowerCase().includes(filterText) || 
                        log.country.toLowerCase().includes(filterText) || 
                        log.ip.toLowerCase().includes(filterText) ||
-                       hasGpsString.toLowerCase().includes(filterText) ||
                        (log.region && log.region.toLowerCase().includes(filterText));
             });
 
@@ -750,7 +782,7 @@
             stream.innerHTML = '';
 
             if(filteredLogs.length === 0) {
-                stream.innerHTML = '<div style="color: var(--text-muted); padding: 1rem;">No tracking files match the search criteria or database is empty.</div>';
+                stream.innerHTML = '<div style="color: var(--text-muted); padding: 1rem;">No matching nodes recorded in local system memory.</div>';
                 return;
             }
 
@@ -758,19 +790,20 @@
                 let div = document.createElement('div');
                 div.className = 'log-item';
                 
-                let gpsStatusLine = `<span style="color: #ef4444">❌ Precision GPS: Permission Denied / Unavailable</span>`;
+                let gpsStatus = `<span style="color: #ef4444">[❌ GPS Coordinates Blocked]</span>`;
+                let clickAction = `alert('This node has blocked GPS streaming permission. Showing general area via IP network tracking dashboard.');`;
+                
+                // Fallback coordinates configuration layer pipeline optimization mapping 
                 if(log.gps) {
-                    gpsStatusLine = `<span style="color: var(--success)">🛰️ Precision GPS Lock: Lat ${log.gps.lat.toFixed(5)}, Lng ${log.gps.lng.toFixed(5)} (Accuracy: ~${Math.round(log.gps.accuracy)}m)</span><br>
-                    <a href="https://www.google.com/maps/search/?api=1&query=${log.gps.lat},${log.gps.lng}" target="_blank" class="maps-link">🗺️ Open Map Location</a>`;
+                    gpsStatus = `<span style="color: var(--success)">[🛰️ GPS Precision Lock Available - Click to view]</span>`;
+                    clickAction = `loadMapLocationFrame(${log.gps.lat}, ${log.gps.longitude}, '${log.name}');`;
                 }
 
+                div.setAttribute('onclick', clickAction);
                 div.innerHTML = `
-                    <strong>[${log.timestamp}] Client Node: ${log.name}</strong><br>
-                    <span style="color: #67e8f9">🌐 IP Network Node: ${log.ip} | IP Geo: ${log.region || 'N/A'}, ${log.country} (${log.code})</span><br>
-                    <span style="color: #94a3b8">💼 Provider Backbone: ${log.isp || 'Internal ISP'}</span><br>
-                    ${gpsStatusLine}<br>
-                    <span style="color: var(--text-muted)">Communication Point: ${log.email}</span><br>
-                    <span style="color: #4ade80">> Parameter Payload: ${log.msg}</span>
+                    <strong>[${log.timestamp}] Node: ${log.name}</strong> ${gpsStatus}<br>
+                    <span style="color: #67e8f9">> Network Core: ${log.ip} (${log.region || 'N/A'}, ${log.country})</span><br>
+                    <span style="color: var(--text-muted)">> Payload Context: ${log.msg.substring(0, 40)}...</span>
                 `;
                 stream.appendChild(div);
             });
@@ -791,6 +824,9 @@
         function purgeSystemLogs() {
             if(confirm("Confirm destructive purge of all data records?")) {
                 localStorage.removeItem('studio_logs');
+                document.getElementById('liveAdminMap').src = '';
+                document.getElementById('mapPlaceholder').style.display = 'block';
+                document.getElementById('mapTargetStatus').innerText = 'Map Status: Idle';
                 renderAdminDashboard();
             }
         }
