@@ -3,131 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhan Technical Studio | Premium Cyber Services</title>
-    <!-- Tailwind CSS for Advanced UI -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- FontAwesome for Cyber Icons -->
+    <title>Subhan Technical Studio // System Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Leaflet CSS for Map Architecture -->
+    <link rel="stylesheet" href="https://unpkg.com" />
     <style>
-        @import url('https://googleapis.com');
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: #030712;
+        :root {
+            --bg-base: #0b0f19;
+            --bg-surface: #131a2c;
+            --bg-card: #1a233d;
+            --border-glow: rgba(14, 165, 233, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #0ea5e9;
+            --accent-purple: #a855f7;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #10b981;
         }
-        .cyber-font { font-family: 'Orbitron', sans-serif; }
-        .neon-glow { text-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4; }
-        .cyber-border { border: 1px solid rgba(6, 182, 212, 0.3); }
-        .cyber-card:hover { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
-    </style>
-</head>
-<body class="text-gray-200 overflow-x-hidden">
 
-    <!-- HERO SECTION -->
-    <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 border-b border-cyan-900/50">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <h1 class="cyber-font text-5xl md:text-7xl font-bold tracking-wider text-cyan-400 neon-glow mb-4">SUBHAN TECHNICAL STUDIO</h1>
-        <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-8">Next-Gen Digital Solutions. High-End Copywriting, Elite Graphic Designs, and High-CTR Thumbnails.</p>
-        <a href="#services" class="cyber-font bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-8 py-3 rounded-none tracking-widest transition-all duration-300 transform hover:scale-105 border border-cyan-400">EXPLORE SERVICES</a>
-    </header>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    <!-- SERVICES & PREVIEWS SECTION -->
-    <section id="services" class="py-20 px-4 max-w-7xl mx-auto">
-        <h2 class="cyber-font text-3xl font-bold text-center text-cyan-400 mb-16 tracking-widest"><i class="fa-solid digidrive mr-2"></i>TRENDING DIGITAL SERVICES</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Service 1: Book Writing -->
-            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-solid fa-book-bookmark"></i></div>
-                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">Ghostwriting & Book Structuring</h3>
-                    <p class="text-gray-400 text-sm mb-4">Premium content writing, E-books, and automated formatting engineered for Amazon KDP success.</p>
-                    <!-- Preview Box -->
-                    <div class="bg-black/80 border border-gray-800 p-4 mb-4 rounded relative overflow-hidden h-40 flex items-center justify-center">
-                        <div class="text-center">
-                            <p class="text-cyan-400 text-xs font-mono mb-1">[LIVE PREVIEW: E-BOOK CASE STUDY]</p>
-                            <h4 class="text-white text-md font-bold">The Silicon Frontier</h4>
-                            <p class="text-gray-500 text-xs mt-1">Chapter 1: The Automated Age...</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
-                    <select id="pricing-book" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
-                        <option value="150">Basic E-Book (10 Pages) - $150</option>
-                        <option value="450">Standard Fiction/Non-Fiction - $450</option>
-                        <option value="1200">Elite Ghostwriting Masterpiece - $1200</option>
-                    </select>
-                </div>
-            </div>
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
 
-            <!-- Service 2: Graphic Design -->
-            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-solid fa-bezier-curve"></i></div>
-                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">Vector Graphics & Brand Systems</h3>
-                    <p class="text-gray-400 text-sm mb-4">Complete UI/UX structures, vector artwork, and professional sci-fi/corporate identities.</p>
-                    <!-- Preview Box -->
-                    <div class="bg-black/80 border border-gray-800 p-2 mb-4 rounded h-40 overflow-hidden flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20"></div>
-                        <i class="fa-solid fa-shield-halved text-6xl text-cyan-400/80 animate-pulse"></i>
-                        <span class="absolute bottom-2 right-2 text-[10px] font-mono text-gray-500">Vector Asset #409</span>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
-                    <select id="pricing-graphics" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
-                        <option value="80">Cyber Punk Logo Design - $80</option>
-                        <option value="300">Complete Brand Architecture Bundle - $300</option>
-                        <option value="750">Premium App UI/UX Assets - $750</option>
-                    </select>
-                </div>
-            </div>
+        h1, h2, h3, .font-tech {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
-            <!-- Service 3: YouTube Thumbnail -->
-            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-brands fa-youtube"></i></div>
-                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">High-CTR Video Thumbnails</h3>
-                    <p class="text-gray-400 text-sm mb-4">Psychologically optimized visuals engineered to dominate algorithms and maximize clicks.</p>
-                    <!-- Preview Box -->
-                    <div class="bg-black/80 border border-gray-800 p-2 mb-4 rounded h-40 overflow-hidden relative flex items-center justify-center">
-                        <img src="https://unsplash.com" alt="Thumbnail Preview" class="w-full h-full object-cover opacity-70">
-                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-3">
-                            <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 w-max rounded mb-1">10M+ VIEWS?</span>
-                            <h4 class="text-white text-xs font-bold font-sans tracking-tight">I HID coding secrets inside this website... 💻</h4>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
-                    <select id="pricing-thumbnail" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
-                        <option value="25">Single Concept Hyper Thumbnail - $25</option>
-                        <option value="100">Package of 5 High-CTR Designs - $100</option>
-                        <option value="250">Monthly Channel Partner System - $250</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </section>
+        /* Webflow Style Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-surface);
+            border: 2px solid var(--bg-base);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
 
-    <!-- SECURE TRANSMISSION (CONTACT & TRACKER) -->
-    <section class="py-16 bg-gray-950/80 border-y border-cyan-900/30 px-4">
-        <div class="max-w-3xl mx-auto cyber-border p-8 bg-black/50 relative">
-            <div class="absolute top-0 right-0 bg-cyan-500 text-black text-xs font-mono font-bold px-3 py-1">SECURE NODE</div>
-            <h2 class="cyber-font text-2xl font-bold text-cyan-400 mb-6 flex items-center"><i class="fa-solid fa-bolt-lightning mr-2 animate-pulse"></i> INITIATE SECURE CONNECTION</h2>
-            
-            <form id="secureContactForm" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-mono text-gray-400 mb-1">OPERATOR ALIAS (NAME)</label>
-                    <input type="text" id="clientName" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-mono text-gray-400 mb-1">COMMUNICATION ROUTE (EMAIL)</label>
-                    <input type="email" id="clientEmail" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-mono text-gray-400 mb-1">TRANSMISSION payload (YOUR MESSAGE & ORDER DETAILS)</label>
-                    <textarea id="clientMessage" rows="4" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm" placeholder="Describe your operational requirements..."></textarea>
-                </div>
-                <button type="submit" class="w-full cyber-font bg-transparent hover:bg-cyan-500/10 border border-cyan-400 text-cyan-400 font-bold py-3 transition-all duration-300 tracking-widest text-sm">
-                    TRANSMIT SECURE DATA
+        /* Container Framework */
+        .mainframe {
+            max-w: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header System */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border-b: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .brand-logo i {
+            color: white;
+            font-size: 1.2rem;
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        .brand-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .terminal-trigger {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-trigger:hover {
+            color: var(--accent-cyan);
+            border-color: rgba(14, 165, 233, 0.4);
+            background: rgba(14, 165, 233, 0.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);
+        }
+
+        /* Hero Deployment Zone */
+        .hero {
+            padding: 96px 0 64px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.06);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            padding: 6px 16px;
+            border-radius: 100px;
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .badge-pill span {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 640px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .action-group {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+            color: white;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(14, 165, 233, 0.35);
+        }
+
+        .btn-secondary {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Webflow Inspired Grid Matrix */
+        .section-title {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 96px;
+        }
+
+        .showcase-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(14, 165, 233, 0.2);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 24px;
+        }
+
+        .icon-thumb { background: rgba(239, 68, 68, 0.08); color: #ef4444; }
+        .icon-graphic { background: rgba(14, 165, 233, 0.08); color: var(--accent-cyan); }
+        .icon-writer { background: rgba(245, 158, 11, 0.08); color: var(--accent-amber); }
+
+        .showcase-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .showcase-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* 3D and High Conversion Preview Subsystems */
+        .preview-viewport {
+            background: #060913;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            aspect-ratio: 16/10;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Thumbnail Live Component Mock */
+        .mock-thumbnail {
+            position: absolute;
+            inset: 0;
