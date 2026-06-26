@@ -1,524 +1,798 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdul Subhan | Technical Portfolio & Admin Console</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                }
-            }
-        }
-    </script>
+    <title>Subhan Technical Studio - Enterprise System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        ::-webkit-scrollbar {
-            width: 8px;
+        :root {
+            --bg-dark: #090a0f;
+            --surface-dark: #121420;
+            --surface-card: #1a1d30;
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.4);
+            --accent: #06b6d4;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #2a2f4c;
+            --success: #10b981;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Technical Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(18, 20, 32, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 5%;
+            position: sticky;
+            top: 0; z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            color: var(--accent);
+            -webkit-text-fill-color: initial;
+        }
+
+        .admin-trigger-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .admin-trigger-btn:hover {
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 5% 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Advanced Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .skill-card {
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary);
+        }
+
+        .skill-card.tech::before { background: var(--accent); }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* HIGH-CONVERTING BOOK PREVIEW SECTION */
+        .preview-showcase {
+            background: radial-gradient(circle at top right, rgba(79,70,229,0.1), transparent), var(--surface-dark);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3.5rem 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .preview-container { grid-template-columns: 1fr; gap: 3rem; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Photorealistic 3D Style Book Cover Asset */
+        .book-wrapper {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .book-cover {
+            width: 280px;
+            height: 400px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border-radius: 4px 16px 16px 4px;
+            box-shadow: -15px 20px 30px rgba(0,0,0,0.5), inset 15px 0 20px rgba(250,250,250,0.05);
+            position: relative;
+            transform: rotateY(-15px) rotateX(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem 2rem;
+            overflow: hidden;
+        }
+
+        /* Realistic Spine Edge Shadow */
+        .book-cover::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 12px; height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.4), transparent);
+        }
+
+        .book-badge {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            width: max-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            margin-top: 1rem;
+        }
+
+        .book-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+
+        /* Live Preview Read Screen */
+        .preview-content-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .preview-tabs {
+            display: flex;
+            gap: 0.75rem;
+            background: rgba(0,0,0,0.3);
+            padding: 0.4rem;
+            border-radius: 10px;
+            width: max-content;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .display-monitor {
+            background: #07080d;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            height: 260px;
+            overflow-y: auto;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            position: relative;
+        }
+
+        /* Elegant Form Structure */
+        .contact-section {
+            max-width: 600px;
+            margin: 0 auto 6rem;
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4338ca;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        /* Admin Terminal Layer Overlay */
+        .admin-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .admin-box {
+            background: var(--surface-dark);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 850px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .admin-header {
+            background: rgba(0,0,0,0.3);
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .close-admin {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .admin-body {
+            padding: 2rem;
+        }
+
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 650px) {
+            .metrics-bar { grid-template-columns: 1fr; }
+        }
+
+        .metric-tile {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-tile div {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .metric-tile span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Search Control Frame */
+        .admin-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .admin-search {
+            flex: 1;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .action-bar-btn {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .action-bar-btn:hover {
+            border-color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .log-stream {
+            background: #07080d;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            height: 280px;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+        }
+
+        .log-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 0.75rem 0;
+        }
+
+        .maps-link {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid var(--primary);
+            color: #cbd5e1;
+            padding: 0.2rem 0.6rem;
             border-radius: 4px;
+            text-decoration: none;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
+
+        .maps-link:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .purge-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 500;
         }
     </style>
 </head>
-<body class="bg-[#0f172a] text-[#f8fafc] font-sans antialiased overflow-x-hidden">
+<body>
 
-    <header class="fixed top-0 left-0 w-full bg-[#0f172a]/90 backdrop-blur-md z-50 border-b border-slate-800/50">
-        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent hover:opacity-80 transition-all duration-300">
-                Abdul Subhan
-            </a>
-
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-sm font-medium text-slate-300 hover:text-blue-500 transition-colors duration-300">Home</a>
-                <a href="#services" class="text-sm font-medium text-slate-300 hover:text-blue-500 transition-colors duration-300">Services</a>
-                <a href="#portfolio" class="text-sm font-medium text-slate-300 hover:text-blue-500 transition-colors duration-300">Portfolio & Preview</a>
-                <a href="#testimonials" class="text-sm font-medium text-slate-300 hover:text-blue-500 transition-colors duration-300">Testimonials</a>
-                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-blue-500 transition-colors duration-300">Contact</a>
-                <a href="#admin-gate" class="text-sm font-medium text-slate-500 hover:text-emerald-400 transition-colors duration-300">Terminal</a>
-            </div>
-
-            <div class="hidden md:block">
-                <a href="#contact" class="px-5 py-2.5 rounded-lg text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20 active:scale-95 transition-all duration-300">
-                    Get in Touch
-                </a>
-            </div>
-
-            <button id="menu-btn" class="block md:hidden text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
-                <svg id="hamburger-icon" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
-        </nav>
-
-        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#0f172a] border-b border-slate-800 px-6 py-6 space-y-4 shadow-xl transition-all duration-300">
-            <a href="#home" class="mobile-link block text-base font-medium text-slate-300 hover:text-blue-500">Home</a>
-            <a href="#services" class="mobile-link block text-base font-medium text-slate-300 hover:text-blue-500">Services</a>
-            <a href="#portfolio" class="mobile-link block text-base font-medium text-slate-300 hover:text-blue-500">Portfolio & Preview</a>
-            <a href="#testimonials" class="mobile-link block text-base font-medium text-slate-300 hover:text-blue-500">Testimonials</a>
-            <a href="#contact" class="mobile-link block text-base font-medium text-slate-300 hover:text-blue-500">Contact</a>
-            <a href="#admin-gate" class="mobile-link block text-base font-medium text-slate-500 hover:text-emerald-400">Terminal</a>
-        </div>
+    <header>
+        <div class="logo">SUBHAN <span>STUDIO</span></div>
+        <button class="admin-trigger-btn" onclick="openAdminGate()">[⚡ ADMIN ACCESS]</button>
     </header>
 
-    <main class="pt-20">
-        <section id="home" class="min-h-[calc(100vh-5rem)] max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 py-12">
-            <div class="flex-1 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 tracking-wide uppercase">
-                    <span>Available for Freelance & Contracts</span>
-                </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                    Transforming Ideas into <br class="hidden sm:inline">
-                    <span class="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">Digital Reality</span>
-                </h1>
-                <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0">
-                    Hi, I'm <strong class="text-slate-200">Abdul Subhan</strong> — a professional Full-Stack Developer, High-Demand Technical Engineer, Creative Designer & Book Writer.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <a href="#portfolio" class="w-full sm:w-auto px-6 py-3.5 rounded-lg text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white text-center transition-all duration-300">View Portfolio & Previews</a>
-                    <a href="#services" class="w-full sm:w-auto px-6 py-3.5 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 text-center border border-slate-700 transition-all duration-300">Our Services</a>
-                </div>
+    <section class="hero">
+        <h1>Advanced Technical Solutions & <span>Creative Architecture</span></h1>
+        <p>Premium high-demand freelancing architectures, intelligent cloud integrations, and elite copy-writing blueprints tailored for modern business environments.</p>
+    </section>
+
+    <main class="container">
+        
+        <h2 class="section-title">Core Operations & Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🤖 High-Demand AI & Cloud</h3>
+                <p>Deploying private local neural systems, custom automation architectures, and self-hosted cloud instances.</p>
             </div>
-            
-            <div class="flex-1 w-full max-w-md lg:max-w-none flex justify-center">
-                <div class="relative w-full aspect-square max-w-[400px] bg-gradient-to-br from-blue-600/20 to-emerald-600/20 rounded-2xl border border-slate-700/50 flex items-center justify-center p-8">
-                    <div class="relative w-full h-full bg-slate-950/80 rounded-xl p-5 border border-slate-800/80 font-mono text-xs text-slate-400 space-y-2">
-                        <div class="flex items-center space-x-1.5 pb-3 border-b border-slate-800">
-                            <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
-                            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                        </div>
-                        <p class="text-emerald-400"><span class="text-blue-400">const</span> system = {</p>
-                        <p class="pl-4">developer: <span class="text-amber-300">'Abdul Subhan'</span>,</p>
-                        <p class="pl-4">skills: <span class="text-amber-300">'Full-Stack, AI, Cloud, Design, Writing'</span>,</p>
-                        <p class="pl-4">status: <span class="text-emerald-400">'All Modules Integrated'</span></p>
-                        <p class="text-emerald-400">};</p>
-                    </div>
-                </div>
+            <div class="skill-card tech">
+                <h3>📈 Performance Marketing</h3>
+                <p>High-ROI programmatic ad structuring, semantic search funnel maps, and conversion analytics systems.</p>
             </div>
-        </section>
+            <div class="skill-card">
+                <h3>📝 Strategic Copywriting</h3>
+                <p>Psychology-driven technical scripts, landing pages, and long-form brand copy engineered to retain and close sales.</p>
+            </div>
+        </div>
 
-        <section id="services" class="border-y border-slate-900 bg-slate-950/30 py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Technical & Creative Services</h2>
-                    <p class="text-slate-400 text-sm">Professional expertise tailored for scale, visibility, and robust architectures.</p>
-                </div>
-
-                <div class="mb-16">
-                    <h3 class="text-xl font-semibold text-blue-400 border-b border-slate-800 pb-2 mb-6 font-mono">// 1. Freelancing (Skill-Based)</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-blue-500/50 transition-all">
-                            <div class="text-xs text-blue-400 font-mono mb-2">DEVELOPMENT</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Software & Web Development</h4>
-                            <p class="text-slate-400 text-sm mt-2">High-performance websites aur modern, responsive mobile applications banana customized features ke sath.</p>
+        <h2 class="section-title">Premium Document Preview</h2>
+        <div class="preview-showcase">
+            <div class="preview-container">
+                
+                <div class="book-wrapper">
+                    <div class="book-cover">
+                        <div class="book-badge">Elite Series</div>
+                        <div>
+                            <div class="book-title">The Digital Blueprint</div>
+                            <div style="font-size: 0.85rem; color: var(--accent); margin-top: 0.5rem;">Volume I: System Scaling</div>
                         </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-blue-500/50 transition-all">
-                            <div class="text-xs text-blue-400 font-mono mb-2">DESIGN</div>
-                            <h4 class="text-lg font-semibold text-slate-100">UI/UX Interface Design</h4>
-                            <p class="text-slate-400 text-sm mt-2">User-friendly aur interactive interfaces engineered for seamless user journey and conversions.</p>
-                        </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-blue-500/50 transition-all">
-                            <div class="text-xs text-blue-400 font-mono mb-2">CREATIVE</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Graphic Designing</h4>
-                            <p class="text-slate-400 text-sm mt-2">Professional logos, corporate branding assets, aur highly engaging social media graphics posts design karna.</p>
-                        </div>
+                        <div class="book-author">By Subhan Studio</div>
                     </div>
                 </div>
 
-                <div class="mb-16">
-                    <h3 class="text-xl font-semibold text-emerald-400 border-b border-slate-800 pb-2 mb-6 font-mono">// 2. High-Demand Digital Skills</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-emerald-500/50 transition-all">
-                            <div class="text-xs text-emerald-400 font-mono mb-2">INTELLIGENCE</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Data Science & AI</h4>
-                            <p class="text-slate-400 text-sm mt-2">Complex data clusters ko analyze karna aur advanced custom AI machines & predictive models par kaam karna.</p>
-                        </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-emerald-500/50 transition-all">
-                            <div class="text-xs text-emerald-400 font-mono mb-2">SECURITY</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Cybersecurity</h4>
-                            <p class="text-slate-400 text-sm mt-2">Enterprise operations, online datasets aur organizational cloud networks ko advanced threats se secure banana.</p>
-                        </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-emerald-500/50 transition-all">
-                            <div class="text-xs text-emerald-400 font-mono mb-2">INFRASTRUCTURE</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Cloud Computing</h4>
-                            <p class="text-slate-400 text-sm mt-2">AWS, Google Cloud, ya Microsoft Azure jaise high-scale cloud environments ko deploy aur manage karna.</p>
-                        </div>
+                <div class="preview-content-box">
+                    <div class="preview-tabs">
+                        <button class="tab-btn active" onclick="switchPreview('book')">BOOK EXTRACT</button>
+                        <button class="tab-btn" onclick="switchPreview('vector')">VECTOR STRUC</button>
                     </div>
-                </div>
-
-                <div class="mb-16">
-                    <h3 class="text-xl font-semibold text-purple-400 border-b border-slate-800 pb-2 mb-6 font-mono">// 3. Content Creation & Digital Marketing</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-purple-500/50 transition-all">
-                            <div class="text-xs text-purple-400 font-mono mb-2">MEDIA</div>
-                            <h4 class="text-lg font-semibold text-slate-100">YouTube & Blogging</h4>
-                            <p class="text-slate-400 text-sm mt-2">Targeted audience management with Google AdSense authorization, premium brand sponsorships, aur affiliate frameworks.</p>
+                    <div class="display-monitor" id="previewMonitor">
                         </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-purple-500/50 transition-all">
-                            <div class="text-xs text-purple-400 font-mono mb-2">MARKETING</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Digital / Performance Marketing</h4>
-                            <p class="text-slate-400 text-sm mt-2">High-budget corporate campaigns execute karna, online ads track karna aur enterprise sales conversions ko generate karna.</p>
-                        </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-purple-500/50 transition-all">
-                            <div class="text-xs text-purple-400 font-mono mb-2">WRITING</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Copywriting</h4>
-                            <p class="text-slate-400 text-sm mt-2">High-converting landing sales pages, marketing funnels, aur ad scripts ke liye specialized persuasive text content likhna.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-amber-400 border-b border-slate-800 pb-2 mb-6 font-mono">// 4. Editorial & Specialized Content</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-amber-500/50 transition-all">
-                            <div class="text-xs text-amber-400 font-mono mb-2">AUTHORSHIP</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Book Writer (With Interactive Previews)</h4>
-                            <p class="text-slate-400 text-sm mt-2">Technical manuals, academic guides, eBooks aur novels likhne ki professional services with responsive dynamic live previews below.</p>
-                        </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-amber-500/50 transition-all">
-                            <div class="text-xs text-amber-400 font-mono mb-2">GRAPHICS MASTER</div>
-                            <h4 class="text-lg font-semibold text-slate-100">Advanced Graphic Layout Designer</h4>
-                            <p class="text-slate-400 text-sm mt-2">Multi-page layout schemes, structural UI assets, templates, print media layouts aur complete high-fidelity system aesthetics visualization.</p>
-                        </div>
-                    </div>
                 </div>
 
             </div>
-        </section>
+        </div>
 
-        <section id="portfolio" class="py-24 max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Interactive Work Previews</h2>
-                <p class="text-slate-400 text-sm">Click on tabs to instantly see live technical previews of work prototypes.</p>
-            </div>
-
-            <div class="bg-slate-950/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-8">
-                <div class="flex flex-wrap items-center justify-center gap-3 border-b border-slate-800 pb-6">
-                    <button id="tabBtnBook" class="px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-blue-500 text-white transition-all">
-                        view_book_preview.exe
-                    </button>
-                    <button id="tabBtnGraphic" class="px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all">
-                        view_graphic_preview.bin
-                    </button>
+        <h2 class="section-title">Initiate Secure Connection</h2>
+        <div class="contact-section">
+            <form id="secureForm" onsubmit="handleFormSubmission(event)">
+                <div class="form-group">
+                    <label>Client Reference ID / Name</label>
+                    <input type="text" id="clientName" class="form-control" placeholder="e.g. Nexus Corp" required>
                 </div>
-
-                <div class="min-h-[350px] bg-slate-950 rounded-xl border border-slate-800 p-6 flex flex-col justify-between">
-                    
-                    <div id="previewBookContent" class="space-y-4">
-                        <div class="flex items-center justify-between border-b border-slate-900 pb-3">
-                            <span class="text-xs font-mono text-amber-400">BOOK SCHEMATIC MANUAL: CHAPTER_01.md</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">LIVE CONTENT BUFFER</span>
-                        </div>
-                        <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800/60 font-serif text-slate-300 leading-relaxed space-y-3 max-h-[250px] overflow-y-auto">
-                            <h4 class="text-lg font-bold text-slate-100 font-sans">The Matrix of Cloud Infrastructure</h4>
-                            <p class="text-sm">"The system woke up in fractions. Node-0043 had responded with zero errors, indicating that the baseline distributed network was operating efficiently. Subhan monitored the telemetry stream on his left monitor. This text serves as an interactive blueprint preview of the live book composition layout..."</p>
-                            <p class="text-sm">"Every asset, from vector coordinates in graphic designs to complex neural networks, must follow strict validation patterns. As pages turned into systematic codes, digital publishing found its engineering edge."</p>
-                        </div>
-                    </div>
-
-                    <div id="previewGraphicContent" class="space-y-4 hidden">
-                        <div class="flex items-center justify-between border-b border-slate-900 pb-3">
-                            <span class="text-xs font-mono text-purple-400">GRAPHIC DESIGN INTERACTIVE SCHEMATIC: CANVAS_01</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">VECTOR PREVIEW</span>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            <div class="border border-dashed border-slate-800 p-4 rounded-lg bg-gradient-to-tr from-blue-600/20 to-transparent flex flex-col items-center justify-center text-center aspect-square">
-                                <span class="text-xs font-mono text-slate-500">LAYER_01</span>
-                                <span class="text-xs font-semibold text-slate-300 mt-1">Logo Bounds</span>
-                                <span class="text-[10px] font-mono text-slate-600 mt-0.5">Vector Grid</span>
-                            </div>
-                            <div class="border border-dashed border-slate-800 p-4 rounded-lg bg-gradient-to-tr from-emerald-600/20 to-transparent flex flex-col items-center justify-center text-center aspect-square">
-                                <span class="text-xs font-mono text-slate-500">LAYER_02</span>
-                                <span class="text-xs font-semibold text-slate-300 mt-1">Branding Palette</span>
-                                <span class="text-[10px] font-mono text-slate-600 mt-0.5">Hex #0f172a</span>
-                            </div>
-                            <div class="border border-dashed border-slate-800 p-4 rounded-lg bg-gradient-to-tr from-purple-600/20 to-transparent flex flex-col items-center justify-center text-center aspect-square">
-                                <span class="text-xs font-mono text-slate-500">LAYER_03</span>
-                                <span class="text-xs font-semibold text-slate-300 mt-1">Typography Mapping</span>
-                                <span class="text-[10px] font-mono text-slate-600 mt-0.5">Inter / Fira Code</span>
-                            </div>
-                            <div class="border border-dashed border-slate-800 p-4 rounded-lg bg-gradient-to-tr from-amber-600/20 to-transparent flex flex-col items-center justify-center text-center aspect-square">
-                                <span class="text-xs font-mono text-slate-500">LAYER_04</span>
-                                <span class="text-xs font-semibold text-slate-300 mt-1">Social Layout</span>
-                                <span class="text-[10px] font-mono text-slate-600 mt-0.5">1080x1080 Standard</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-[11px] font-mono text-slate-500 border-t border-slate-900 pt-3 mt-4">
-                        SYSTEM_STATUS: Operational | Previewing requested stream indices dynamically.
-                    </div>
+                <div class="form-group">
+                    <label>Project Communication Matrix / Email</label>
+                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. contact@nexus.io" required>
                 </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-24 max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12 space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Technical Data Pipeline</h2>
-                <p class="text-slate-400 text-sm">Submit your specifications. Systems automatically capture client regional network nodes.</p>
-            </div>
-
-            <form id="contactForm" class="space-y-6 bg-slate-900/20 border border-slate-800/80 p-8 sm:p-10 rounded-2xl shadow-xl">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Full Name</label>
-                        <input id="formName" type="text" required placeholder="John Doe" class="w-full bg-slate-950/80 border border-slate-800 rounded-lg px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Address</label>
-                        <input id="formEmail" type="email" required placeholder="john@example.com" class="w-full bg-slate-950/80 border border-slate-800 rounded-lg px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-blue-500">
-                    </div>
+                <div class="form-group">
+                    <label>Operational Parameters / Message</label>
+                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Describe the system architecture required..." required></textarea>
                 </div>
-
-                <div class="space-y-2">
-                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Project Requirements</label>
-                    <textarea id="formMessage" rows="5" required placeholder="Describe structural requirements, timelines and scope..." class="w-full bg-slate-950/80 border border-slate-800 rounded-lg px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-blue-500"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-4 rounded-lg bg-gradient-to-r from-blue-500 to-emerald-500 font-medium text-sm text-white shadow-lg hover:opacity-95 transition-all">
-                    Transmit Secure Payload
-                </button>
+                <button type="submit" class="submit-btn">Transmit Secure Message</button>
             </form>
-        </section>
+        </div>
 
-        <section id="admin-gate" class="py-12 max-w-4xl mx-auto px-6 border-t border-slate-900">
-            <div class="bg-slate-950/40 border border-dashed border-slate-800 p-6 rounded-xl text-center">
-                <h3 class="text-sm font-mono text-slate-400 uppercase tracking-widest mb-3">⚡ SECURE TERMINAL CONSOLE</h3>
-                <div class="flex max-w-md mx-auto gap-2">
-                    <input id="adminCodeInput" type="password" placeholder="Input Admin Access String..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-sm text-center text-slate-200 font-mono focus:outline-none focus:border-emerald-500">
-                    <button id="loginAdminBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all">Execute</button>
-                </div>
-                <p id="loginError" class="text-xs text-red-400 mt-2 hidden font-mono">CRITICAL_ERR: Access Denied!</p>
-                
-                <div id="terminalLoader" class="hidden flex items-center justify-center gap-2 mt-4 text-xs font-mono text-emerald-400">
-                    <svg class="animate-spin h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Fetching cluster nodes...</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="adminDashboard" class="py-16 max-w-6xl mx-auto px-6 hidden transition-all duration-500">
-            <div class="bg-slate-900/90 border border-slate-700/60 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl">
-                
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-5 gap-4">
-                    <div>
-                        <h2 class="text-xl font-bold font-mono text-emerald-400 flex items-center gap-2">
-                            <span>root@subhan_office:~# logs</span>
-                        </h2>
-                        <p class="text-xs text-slate-400 mt-1">Geographical lookup streams matching current transaction histories.</p>
-                    </div>
-                    <button id="logoutAdminBtn" class="bg-slate-800 border border-slate-700 text-slate-300 hover:bg-red-950 hover:text-red-400 hover:border-red-900 px-4 py-2 rounded-lg text-xs font-mono transition-all">
-                        exit_terminal
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 font-mono">
-                    <div class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl">
-                        <p class="text-[10px] uppercase text-slate-500 tracking-wider">Total Payload Streams</p>
-                        <p id="statTotal" class="text-2xl font-bold text-blue-400 mt-1">00</p>
-                    </div>
-                    <div class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl">
-                        <p class="text-[10px] uppercase text-slate-500 tracking-wider">Unique Node Origins</p>
-                        <p id="statCountries" class="text-2xl font-bold text-emerald-400 mt-1">00</p>
-                    </div>
-                    <div class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl sm:col-span-2 md:col-span-1">
-                        <p class="text-[10px] uppercase text-slate-500 tracking-wider">Server Status</p>
-                        <p class="text-2xl font-bold text-amber-400 mt-1 flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-sm tracking-normal font-sans text-slate-300">Operational</span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest">Active Database Buffers</h3>
-                    <div id="messagesContainer" class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-                        </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <footer class="border-t border-slate-900 bg-slate-950/80 py-8 text-center text-xs font-mono text-slate-600">
-        <p>&copy; 2026 Abdul Subhan. Security-First Architecture Implemented.</p>
-    </footer>
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-box">
+            <div class="admin-header">
+                <span>🛰️ SECURE NODE CORE CONSOLE</span>
+                <button class="close-admin" onclick="closeAdminGate()">✕</button>
+            </div>
+            <div class="admin-body">
+                <div class="metrics-bar">
+                    <div class="metric-tile">
+                        <div id="countMsg">0</div>
+                        <span>Total Transmissions</span>
+                    </div>
+                    <div class="metric-tile">
+                        <div id="countGeo">0</div>
+                        <span>Unique Country Nodes</span>
+                    </div>
+                    <div class="metric-tile">
+                        <div id="systemState" style="color: var(--success)">HYBRID ACTIVE</div>
+                        <span>Tracking Gateway</span>
+                    </div>
+                </div>
+
+                <div class="admin-controls">
+                    <input type="text" id="adminSearchInput" class="admin-search" placeholder="Filter logs by Name, Country, IP or GPS..." oninput="renderAdminDashboard()">
+                    <button class="action-bar-btn" onclick="exportDataLogs()">📥 Backup Logs</button>
+                </div>
+
+                <div class="log-stream" id="logStream">
+                    </div>
+                <button class="purge-btn" onclick="purgeSystemLogs()">Purge System Logs</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Interactive Tab Switching Logic for Previews
-        const tabBtnBook = document.getElementById('tabBtnBook');
-        const tabBtnGraphic = document.getElementById('tabBtnGraphic');
-        const previewBookContent = document.getElementById('previewBookContent');
-        const previewGraphicContent = document.getElementById('previewGraphicContent');
+        const contentPool = {
+            book: `[DOCUMENT OVERVIEW: THE DIGITAL BLUEPRINT]\n-----------------------------------------\nChapter 1: The architecture of human conversion profiles depends on fluid layout vectors.\n\nBy prioritizing modular, highly functional elements over decorative fillers, your operational interfaces command subconscious authority. This document builds upon strategic structures that enforce user attention execution...`,
+            vector: `[SYSTEM DIAGRAM LOG: VECTOR STRUCTURES]\n-----------------------------------------\n> LAYER 01: Core UI Node Alignment (OK)\n> LAYER 02: Dynamic Canvas Matrix Layer (Rendered)\n> SVG Engine: Complex rendering calculation pathing active.\n> Vector Buffer Array: [0x1F, 0x2B, 0x4C, 0x8E]\n> Display status: System layout is perfectly responsive.`
+        };
 
-        tabBtnBook.addEventListener('click', () => {
-            previewBookContent.classList.remove('hidden');
-            previewGraphicContent.classList.add('hidden');
-            tabBtnBook.className = "px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-blue-500 text-white transition-all";
-            tabBtnGraphic.className = "px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all";
-        });
+        document.getElementById('previewMonitor').innerText = contentPool.book;
 
-        tabBtnGraphic.addEventListener('click', () => {
-            previewBookContent.classList.add('hidden');
-            previewGraphicContent.classList.remove('hidden');
-            tabBtnGraphic.className = "px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-purple-500 text-white transition-all";
-            tabBtnBook.className = "px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white transition-all";
-        });
+        function switchPreview(type) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs[0].classList.toggle('active', type === 'book');
+            tabs[1].classList.toggle('active', type === 'vector');
+            document.getElementById('previewMonitor').innerText = contentPool[type];
+        }
 
-        // Menu Toggle Handler
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if(!mobileMenu.classList.contains('hidden')){
-                hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`;
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById('clientName').value;
+            let email = document.getElementById('clientEmail').value;
+            let msg = document.getElementById('clientMsg').value;
+
+            // Step 1: Request exact high-accuracy GPS logs if browser permits
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        let gpsCoords = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        };
+                        await executeLogPipeline(name, email, msg, gpsCoords);
+                    },
+                    async (error) => {
+                        console.log("GPS node permission rejected. Falling back to IP tracking stream.");
+                        await executeLogPipeline(name, email, msg, null);
+                    },
+                    { enableHighAccuracy: true, timeout: 6000 }
+                );
             } else {
-                hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+                executeLogPipeline(name, email, msg, null);
             }
-        });
+        }
 
-        // CORE INFRASTRUCTURE PROGRAMMING
-        const ACCESS_KEY = "automation live ms";
-
-        // 1. Transaction Pipeline Form Handler
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        async function executeLogPipeline(name, email, msg, gpsData) {
+            let geoData = { ip: "Unknown", country: "Local Loopback", region: "Unknown", isp: "Unknown Server Node", code: "XX" };
             
-            const name = document.getElementById('formName').value;
-            const email = document.getElementById('formEmail').value;
-            const message = document.getElementById('formMessage').value;
-            
-            let networkCountry = "Fallback System Global";
-            let networkCode = "US";
-
             try {
-                const networkStream = await fetch('https://ipapi.co/json/');
-                if(networkStream.ok) {
-                    const payload = await networkStream.json();
-                    networkCountry = payload.country_name || "Unknown Matrix";
-                    networkCode = payload.country || "US";
+                let response = await fetch('https://ipapi.co/json/');
+                if(response.ok) {
+                    let data = await response.json();
+                    geoData.ip = data.ip || "Unknown";
+                    geoData.country = data.country_name || "Unknown Country";
+                    geoData.region = data.city || data.region || "Unknown Region";
+                    geoData.isp = data.org || "Unknown Provider";
+                    geoData.code = data.country_code || "XX";
                 }
-            } catch (err) {
-                console.warn("API Node blocked or timed out. Falling back to default system region.", err);
+            } catch(e) {
+                console.log("Routing network routing error.");
             }
 
-            const dataObject = {
+            let logPayload = {
                 id: Date.now(),
                 name: name,
                 email: email,
-                message: message,
-                country: networkCountry,
-                code: networkCode,
-                date: new Date().toISOString().replace('T', ' ').substring(0, 19)
+                msg: msg,
+                ip: geoData.ip,
+                country: geoData.country,
+                region: geoData.region,
+                isp: geoData.isp,
+                code: geoData.code,
+                gps: gpsData, // Saved exact GPS data if available
+                timestamp: new Date().toLocaleString()
             };
 
-            let stackStorage = JSON.parse(localStorage.getItem('technical_logs')) || [];
-            stackStorage.push(dataObject);
-            localStorage.setItem('technical_logs', JSON.stringify(stackStorage));
+            let existingLogs = JSON.parse(localStorage.getItem('studio_logs')) || [];
+            existingLogs.push(logPayload);
+            localStorage.setItem('studio_logs', JSON.stringify(existingLogs));
 
-            alert(`Payload transmitted safely. Origin captured: ${networkCountry}`);
-            document.getElementById('contactForm').reset();
-            
-            if(!adminDashboard.classList.contains('hidden')) {
-                renderLiveConsole();
+            let alertString = `Transmission complete.\nNode Registered: [${geoData.region}, ${geoData.country}]`;
+            if (gpsData) {
+                alertString += `\nPrecision GPS Lock Acquired successfully!`;
             }
-        });
+            alert(alertString);
+            document.getElementById('secureForm').reset();
+        }
 
-        // 2. Secret Code Validation Routine
-        const loginAdminBtn = document.getElementById('loginAdminBtn');
-        const adminCodeInput = document.getElementById('adminCodeInput');
-        const adminDashboard = document.getElementById('adminDashboard');
-        const loginError = document.getElementById('loginError');
-        const loader = document.getElementById('terminalLoader');
-
-        loginAdminBtn.addEventListener('click', () => {
-            if(adminCodeInput.value.trim() === ACCESS_KEY) {
-                loginError.classList.add('hidden');
-                loader.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    adminDashboard.classList.remove('hidden');
-                    adminCodeInput.value = "";
-                    renderLiveConsole();
-                    adminDashboard.scrollIntoView({ behavior: 'smooth' });
-                }, 1200);
+        function openAdminGate() {
+            let pass = prompt("Enter Dynamic Access Handshake String:");
+            if (pass === "automation live ms") {
+                document.getElementById('adminModal').style.display = 'flex';
+                renderAdminDashboard();
             } else {
-                loginError.classList.remove('hidden');
+                alert("Handshake denied. Network access vector rejected.");
             }
-        });
+        }
 
-        document.getElementById('logoutAdminBtn').addEventListener('click', () => {
-            adminDashboard.classList.add('hidden');
-        });
+        function closeAdminGate() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
 
-        // 3. Analytics Engine & Output Rendering
-        function renderLiveConsole() {
-            const outputBuffer = document.getElementById('messagesContainer');
-            const metricsArray = JSON.parse(localStorage.getItem('technical_logs')) || [];
+        function renderAdminDashboard() {
+            let logs = JSON.parse(localStorage.getItem('studio_logs')) || [];
+            let filterText = document.getElementById('adminSearchInput').value.toLowerCase();
             
-            document.getElementById('statTotal').innerText = String(metricsArray.length).padStart(2, '0');
-            
-            const uniqueCountries = [...new Set(metricsArray.map(item => item.country))];
-            document.getElementById('statCountries').innerText = String(uniqueCountries.length).padStart(2, '0');
+            let filteredLogs = logs.filter(log => {
+                let hasGpsString = log.gps ? `gps lat:${log.gps.lat} lng:${log.gps.lng}` : '';
+                return log.name.toLowerCase().includes(filterText) || 
+                       log.country.toLowerCase().includes(filterText) || 
+                       log.ip.toLowerCase().includes(filterText) ||
+                       hasGpsString.toLowerCase().includes(filterText) ||
+                       (log.region && log.region.toLowerCase().includes(filterText));
+            });
 
-            if(metricsArray.length === 0) {
-                outputBuffer.innerHTML = `<p class="text-xs font-mono text-slate-500 text-center py-8">BUFFER_EMPTY: No client packet logs recorded.</p>`;
+            document.getElementById('countMsg').innerText = logs.length;
+            
+            let countries = [...new Set(logs.map(l => l.country))];
+            document.getElementById('countGeo').innerText = countries.length;
+
+            let stream = document.getElementById('logStream');
+            stream.innerHTML = '';
+
+            if(filteredLogs.length === 0) {
+                stream.innerHTML = '<div style="color: var(--text-muted); padding: 1rem;">No tracking files match the search criteria or database is empty.</div>';
                 return;
             }
 
-            outputBuffer.innerHTML = metricsArray.map(log => `
-                <div class="bg-slate-950/90 border border-slate-800 p-5 rounded-xl space-y-4 transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-900 pb-3">
-                        <div>
-                            <h4 class="text-sm font-semibold text-slate-200 font-mono">${log.name} <span class="text-xs font-normal text-slate-500">&lt;${log.email}&gt;</span></h4>
-                            <p class="text-[10px] font-mono text-slate-600 mt-0.5">TIMESTAMP: ${log.date}</p>
-                        </div>
-                        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-md self-start sm:self-center font-mono">
-                            <span class="text-[11px] text-emerald-400">NODE: ${log.country}</span>
-                            <img src="https://flagcdn.com/16x12/${log.code.toLowerCase()}.png" alt="node-flag" class="opacity-70 rounded-sm">
-                        </div>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed font-sans">${log.message}</p>
-                    
-                    <div class="flex items-center justify-end gap-3 pt-2">
-                        <a href="mailto:${log.email}?subject=Response regarding system query&body=Hello ${log.name}, " class="text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded hover:bg-emerald-500 hover:text-white transition-all">
-                            invoke_reply
-                        </a>
-                        <button onclick="purgeLog(${log.id})" class="text-[11px] font-mono bg-rose-500/10 text-rose-400 border border-rose-500/20 px-3 py-1.5 rounded hover:bg-rose-500 hover:text-white transition-all">
-                            purge_record
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+            filteredLogs.reverse().forEach(log => {
+                let div = document.createElement('div');
+                div.className = 'log-item';
+                
+                let gpsStatusLine = `<span style="color: #ef4444">❌ Precision GPS: Permission Denied / Unavailable</span>`;
+                if(log.gps) {
+                    gpsStatusLine = `<span style="color: var(--success)">🛰️ Precision GPS Lock: Lat ${log.gps.lat.toFixed(5)}, Lng ${log.gps.lng.toFixed(5)} (Accuracy: ~${Math.round(log.gps.accuracy)}m)</span><br>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${log.gps.lat},${log.gps.lng}" target="_blank" class="maps-link">🗺️ Open Map Location</a>`;
+                }
+
+                div.innerHTML = `
+                    <strong>[${log.timestamp}] Client Node: ${log.name}</strong><br>
+                    <span style="color: #67e8f9">🌐 IP Network Node: ${log.ip} | IP Geo: ${log.region || 'N/A'}, ${log.country} (${log.code})</span><br>
+                    <span style="color: #94a3b8">💼 Provider Backbone: ${log.isp || 'Internal ISP'}</span><br>
+                    ${gpsStatusLine}<br>
+                    <span style="color: var(--text-muted)">Communication Point: ${log.email}</span><br>
+                    <span style="color: #4ade80">> Parameter Payload: ${log.msg}</span>
+                `;
+                stream.appendChild(div);
+            });
         }
 
-        window.purgeLog = function(id) {
-            let logStack = JSON.parse(localStorage.getItem('technical_logs')) || [];
-            logStack = logStack.filter(record => record.id !== id);
-            localStorage.setItem('technical_logs', JSON.stringify(logStack));
-            renderLiveConsole();
+        function exportDataLogs() {
+            let logs = localStorage.getItem('studio_logs') || "[]";
+            let blob = new Blob([logs], { type: "application/json" });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = `subhan_studio_database_backup_${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function purgeSystemLogs() {
+            if(confirm("Confirm destructive purge of all data records?")) {
+                localStorage.removeItem('studio_logs');
+                renderAdminDashboard();
+            }
         }
     </script>
 </body>
