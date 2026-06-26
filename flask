@@ -1,0 +1,6 @@
+your-repository-name/
+│
+├── app.py                     <-- (Python file jo server chalaye gi)
+├── requirements.txt           <-- (Flask aur baqi libraries ki list)
+└── templates/                 <-- (Yeh folder banana zaroori hai)
+    └── index.html             <-- (Jo HTML code pehle banaya tha, wo is folder ke andar jayega)
