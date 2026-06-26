@@ -3,833 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhan Technical Studio - Enterprise System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Subhan Technical Studio | Premium Cyber Services</title>
+    <!-- Tailwind CSS for Advanced UI -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- FontAwesome for Cyber Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root {
-            --bg-dark: #090a0f;
-            --surface-dark: #121420;
-            --surface-card: #1a1d30;
-            --primary: #4f46e5;
-            --primary-glow: rgba(79, 70, 229, 0.4);
-            --accent: #06b6d4;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #2a2f4c;
-            --success: #10b981;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
+        @import url('https://googleapis.com');
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #030712;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        header {
-            background: rgba(18, 20, 32, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.25rem 5%;
-            position: sticky;
-            top: 0; z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.4rem;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logo span {
-            color: var(--accent);
-            -webkit-text-fill-color: initial;
-        }
-
-        .admin-trigger-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-family: 'JetBrains Mono', monospace;
-            transition: all 0.3s ease;
-        }
-
-        .admin-trigger-btn:hover {
-            border-color: var(--primary);
-            color: #fff;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 6rem 5% 4rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 5%;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            text-align: center;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
-
-        .skill-card {
-            background: var(--surface-dark);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary);
-        }
-
-        .skill-card.tech::before { background: var(--accent); }
-
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .preview-showcase {
-            background: radial-gradient(circle at top right, rgba(79,70,229,0.1), transparent), var(--surface-dark);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 3.5rem 2rem;
-            margin-bottom: 6rem;
-        }
-
-        .preview-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 900px) {
-            .preview-container { grid-template-columns: 1fr; gap: 3rem; }
-            .hero h1 { font-size: 2.5rem; }
-        }
-
-        .book-wrapper {
-            perspective: 1200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .book-cover {
-            width: 280px;
-            height: 400px;
-            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-            border-radius: 4px 16px 16px 4px;
-            box-shadow: -15px 20px 30px rgba(0,0,0,0.5), inset 15px 0 20px rgba(250,250,250,0.05);
-            position: relative;
-            transform: rotateY(-15px) rotateX(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2.5rem 2rem;
-            overflow: hidden;
-        }
-
-        .book-cover::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 12px; height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.4), transparent);
-        }
-
-        .book-badge {
-            background: rgba(6, 182, 212, 0.2);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            width: max-content;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .book-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #fff;
-            margin-top: 1rem;
-        }
-
-        .book-author {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1rem;
-        }
-
-        .preview-content-box {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .preview-tabs {
-            display: flex;
-            gap: 0.75rem;
-            background: rgba(0,0,0,0.3);
-            padding: 0.4rem;
-            border-radius: 10px;
-            width: max-content;
-            border: 1px solid var(--border);
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 0.5rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        .display-monitor {
-            background: #07080d;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            height: 260px;
-            overflow-y: auto;
-            font-size: 0.95rem;
-            color: #cbd5e1;
-        }
-
-        .contact-section {
-            max-width: 600px;
-            margin: 0 auto 6rem;
-            background: var(--surface-dark);
-            border: 1px solid var(--border);
-            padding: 3rem 2.5rem;
-            border-radius: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-        }
-
-        .form-control {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.85rem 1rem;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #4338ca;
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        /* Admin Terminal Layer Overlay */
-        .admin-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 8, 0.9);
-            backdrop-filter: blur(12px);
-            z-index: 200;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .admin-box {
-            background: var(--surface-dark);
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 1100px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-
-        .admin-header {
-            background: rgba(0,0,0,0.3);
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .close-admin {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .admin-body {
-            padding: 1.5rem;
-        }
-
-        .metrics-bar {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (max-width: 650px) {
-            .metrics-bar { grid-template-columns: 1fr; }
-        }
-
-        .metric-tile {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .metric-tile div {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--accent);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .metric-tile span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .admin-controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .admin-search {
-            flex: 1;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        .action-bar-btn {
-            background: var(--surface-card);
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        /* Split Screen Architecture for Map View */
-        .workspace-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 850px) {
-            .workspace-split { grid-template-columns: 1fr; }
-        }
-
-        .log-stream {
-            background: #07080d;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1rem;
-            height: 350px;
-            overflow-y: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #4ade80;
-        }
-
-        .log-item {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 0.75rem 0;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .log-item:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        /* Map Embed Interface */
-        .map-view-container {
-            background: #07080d;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            height: 350px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .map-header-status {
-            background: rgba(0,0,0,0.5);
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-            border-bottom: 1px solid var(--border);
-            color: var(--accent);
-        }
-
-        .live-iframe-map {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #121420;
-        }
-
-        .map-placeholder-text {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--text-muted);
-            text-align: center;
-            font-size: 0.9rem;
-            pointer-events: none;
-            width: 80%;
-        }
-
-        .purge-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
+        .cyber-font { font-family: 'Orbitron', sans-serif; }
+        .neon-glow { text-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4; }
+        .cyber-border { border: 1px solid rgba(6, 182, 212, 0.3); }
+        .cyber-card:hover { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
     </style>
 </head>
-<body>
+<body class="text-gray-200 overflow-x-hidden">
 
-    <header>
-        <div class="logo">SUBHAN <span>STUDIO</span></div>
-        <button class="admin-trigger-btn" onclick="openAdminGate()">[⚡ ADMIN ACCESS]</button>
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 border-b border-cyan-900/50">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <h1 class="cyber-font text-5xl md:text-7xl font-bold tracking-wider text-cyan-400 neon-glow mb-4">SUBHAN TECHNICAL STUDIO</h1>
+        <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-8">Next-Gen Digital Solutions. High-End Copywriting, Elite Graphic Designs, and High-CTR Thumbnails.</p>
+        <a href="#services" class="cyber-font bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-8 py-3 rounded-none tracking-widest transition-all duration-300 transform hover:scale-105 border border-cyan-400">EXPLORE SERVICES</a>
     </header>
 
-    <section class="hero">
-        <h1>Advanced Technical Solutions & <span>Creative Architecture</span></h1>
-        <p>Premium high-demand freelancing architectures, intelligent cloud integrations, and elite copy-writing blueprints tailored for modern business environments.</p>
+    <!-- SERVICES & PREVIEWS SECTION -->
+    <section id="services" class="py-20 px-4 max-w-7xl mx-auto">
+        <h2 class="cyber-font text-3xl font-bold text-center text-cyan-400 mb-16 tracking-widest"><i class="fa-solid digidrive mr-2"></i>TRENDING DIGITAL SERVICES</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1: Book Writing -->
+            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">Ghostwriting & Book Structuring</h3>
+                    <p class="text-gray-400 text-sm mb-4">Premium content writing, E-books, and automated formatting engineered for Amazon KDP success.</p>
+                    <!-- Preview Box -->
+                    <div class="bg-black/80 border border-gray-800 p-4 mb-4 rounded relative overflow-hidden h-40 flex items-center justify-center">
+                        <div class="text-center">
+                            <p class="text-cyan-400 text-xs font-mono mb-1">[LIVE PREVIEW: E-BOOK CASE STUDY]</p>
+                            <h4 class="text-white text-md font-bold">The Silicon Frontier</h4>
+                            <p class="text-gray-500 text-xs mt-1">Chapter 1: The Automated Age...</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
+                    <select id="pricing-book" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
+                        <option value="150">Basic E-Book (10 Pages) - $150</option>
+                        <option value="450">Standard Fiction/Non-Fiction - $450</option>
+                        <option value="1200">Elite Ghostwriting Masterpiece - $1200</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Service 2: Graphic Design -->
+            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-solid fa-bezier-curve"></i></div>
+                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">Vector Graphics & Brand Systems</h3>
+                    <p class="text-gray-400 text-sm mb-4">Complete UI/UX structures, vector artwork, and professional sci-fi/corporate identities.</p>
+                    <!-- Preview Box -->
+                    <div class="bg-black/80 border border-gray-800 p-2 mb-4 rounded h-40 overflow-hidden flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20"></div>
+                        <i class="fa-solid fa-shield-halved text-6xl text-cyan-400/80 animate-pulse"></i>
+                        <span class="absolute bottom-2 right-2 text-[10px] font-mono text-gray-500">Vector Asset #409</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
+                    <select id="pricing-graphics" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
+                        <option value="80">Cyber Punk Logo Design - $80</option>
+                        <option value="300">Complete Brand Architecture Bundle - $300</option>
+                        <option value="750">Premium App UI/UX Assets - $750</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Service 3: YouTube Thumbnail -->
+            <div class="bg-gray-900/60 p-6 cyber-border cyber-card transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="text-cyan-400 text-4xl mb-4"><i class="fa-brands fa-youtube"></i></div>
+                    <h3 class="cyber-font text-xl font-bold mb-2 text-white">High-CTR Video Thumbnails</h3>
+                    <p class="text-gray-400 text-sm mb-4">Psychologically optimized visuals engineered to dominate algorithms and maximize clicks.</p>
+                    <!-- Preview Box -->
+                    <div class="bg-black/80 border border-gray-800 p-2 mb-4 rounded h-40 overflow-hidden relative flex items-center justify-center">
+                        <img src="https://unsplash.com" alt="Thumbnail Preview" class="w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-3">
+                            <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 w-max rounded mb-1">10M+ VIEWS?</span>
+                            <h4 class="text-white text-xs font-bold font-sans tracking-tight">I HID coding secrets inside this website... 💻</h4>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-cyan-500 font-mono block mb-1">SELECT PRESET:</label>
+                    <select id="pricing-thumbnail" class="bg-black border border-cyan-900 text-gray-300 text-sm p-2 w-full rounded focus:outline-none focus:border-cyan-400">
+                        <option value="25">Single Concept Hyper Thumbnail - $25</option>
+                        <option value="100">Package of 5 High-CTR Designs - $100</option>
+                        <option value="250">Monthly Channel Partner System - $250</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <main class="container">
-        
-        <h2 class="section-title">Core Operations & Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>🤖 High-Demand AI & Cloud</h3>
-                <p>Deploying private local neural systems, custom automation architectures, and self-hosted cloud instances.</p>
-            </div>
-            <div class="skill-card tech">
-                <h3>📈 Performance Marketing</h3>
-                <p>High-ROI programmatic ad structuring, semantic search funnel maps, and conversion analytics systems.</p>
-            </div>
-            <div class="skill-card">
-                <h3>📝 Strategic Copywriting</h3>
-                <p>Psychology-driven technical scripts, landing pages, and long-form brand copy engineered to retain and close sales.</p>
-            </div>
-        </div>
-
-        <h2 class="section-title">Premium Document Preview</h2>
-        <div class="preview-showcase">
-            <div class="preview-container">
-                <div class="book-wrapper">
-                    <div class="book-cover">
-                        <div class="book-badge">Elite Series</div>
-                        <div>
-                            <div class="book-title">The Digital Blueprint</div>
-                            <div style="font-size: 0.85rem; color: var(--accent); margin-top: 0.5rem;">Volume I: System Scaling</div>
-                        </div>
-                        <div class="book-author">By Subhan Studio</div>
-                    </div>
-                </div>
-
-                <div class="preview-content-box">
-                    <div class="preview-tabs">
-                        <button class="tab-btn active" onclick="switchPreview('book')">BOOK EXTRACT</button>
-                        <button class="tab-btn" onclick="switchPreview('vector')">VECTOR STRUC</button>
-                    </div>
-                    <div class="display-monitor" id="previewMonitor"></div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Initiate Secure Connection</h2>
-        <div class="contact-section">
-            <form id="secureForm" onsubmit="handleFormSubmission(event)">
-                <div class="form-group">
-                    <label>Client Reference ID / Name</label>
-                    <input type="text" id="clientName" class="form-control" placeholder="e.g. Nexus Corp" required>
-                </div>
-                <div class="form-group">
-                    <label>Project Communication Matrix / Email</label>
-                    <input type="email" id="clientEmail" class="form-control" placeholder="e.g. contact@nexus.io" required>
-                </div>
-                <div class="form-group">
-                    <label>Operational Parameters / Message</label>
-                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Describe the system architecture required..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Transmit Secure Message</button>
-            </form>
-        </div>
-
-    </main>
-
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-box">
-            <div class="admin-header">
-                <span>🛰️ SECURE NODE CORE CONSOLE (INTEGRATED MAP EDITION)</span>
-                <button class="close-admin" onclick="closeAdminGate()">✕</button>
-            </div>
-            <div class="admin-body">
-                <div class="metrics-bar">
-                    <div class="metric-tile">
-                        <div id="countMsg">0</div>
-                        <span>Total Transmissions</span>
-                    </div>
-                    <div class="metric-tile">
-                        <div id="countGeo">0</div>
-                        <span>Unique Country Nodes</span>
-                    </div>
-                    <div class="metric-tile">
-                        <div id="systemState" style="color: var(--success)">MAP CORE LOGGED</div>
-                        <span>Tracking Gateway</span>
-                    </div>
-                </div>
-
-                <div class="admin-controls">
-                    <input type="text" id="adminSearchInput" class="admin-search" placeholder="Filter logs by Name, Country, IP..." oninput="renderAdminDashboard()">
-                    <button class="action-bar-btn" onclick="exportDataLogs()">📥 Backup Logs</button>
-                </div>
-
-                <div class="workspace-split">
-                    
-                    <div class="log-stream" id="logStream"></div>
-                    
-                    <div class="map-view-container">
-                        <div class="map-header-status" id="mapTargetStatus">Map Status: Idle (Select log node)</div>
-                        <div class="map-placeholder-text" id="mapPlaceholder">
-                            Click any log item on the left to instantly load its live geographical position on the Map framework.
-                        </div>
-                        <iframe class="live-iframe-map" id="liveAdminMap" src=""></iframe>
-                    </div>
-
-                </div>
-
-                <button class="purge-btn" onclick="purgeSystemLogs()">Purge System Logs</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const contentPool = {
-            book: `[DOCUMENT OVERVIEW: THE DIGITAL BLUEPRINT]\n-----------------------------------------\nChapter 1: The architecture of human conversion profiles depends on fluid layout vectors.\n\nBy prioritizing modular, highly functional elements over decorative fillers, your operational interfaces command subconscious authority. This document builds upon strategic structures that enforce user attention execution...`,
-            vector: `[SYSTEM DIAGRAM LOG: VECTOR STRUCTURES]\n-----------------------------------------\n> LAYER 01: Core UI Node Alignment (OK)\n> LAYER 02: Dynamic Canvas Matrix Layer (Rendered)\n> SVG Engine: Complex rendering calculation pathing active.\n> Display status: System layout is perfectly responsive.`
-        };
-
-        document.getElementById('previewMonitor').innerText = contentPool.book;
-
-        function switchPreview(type) {
-            const tabs = document.querySelectorAll('.tab-btn');
-            tabs[0].classList.toggle('active', type === 'book');
-            tabs[1].classList.toggle('active', type === 'vector');
-            document.getElementById('previewMonitor').innerText = contentPool[type];
-        }
-
-        function handleFormSubmission(event) {
-            event.preventDefault();
+    <!-- SECURE TRANSMISSION (CONTACT & TRACKER) -->
+    <section class="py-16 bg-gray-950/80 border-y border-cyan-900/30 px-4">
+        <div class="max-w-3xl mx-auto cyber-border p-8 bg-black/50 relative">
+            <div class="absolute top-0 right-0 bg-cyan-500 text-black text-xs font-mono font-bold px-3 py-1">SECURE NODE</div>
+            <h2 class="cyber-font text-2xl font-bold text-cyan-400 mb-6 flex items-center"><i class="fa-solid fa-bolt-lightning mr-2 animate-pulse"></i> INITIATE SECURE CONNECTION</h2>
             
-            let name = document.getElementById('clientName').value;
-            let email = document.getElementById('clientEmail').value;
-            let msg = document.getElementById('clientMsg').value;
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        let gpsCoords = {
-                            lat: position.coords.latitude,
-                            longitude: position.coords.longitude,
-                            accuracy: position.coords.accuracy
-                        };
-                        await executeLogPipeline(name, email, msg, gpsCoords);
-                    },
-                    async (error) => {
-                        console.log("GPS link disabled. Using IP node fallback stream.");
-                        await executeLogPipeline(name, email, msg, null);
-                    },
-                    { enableHighAccuracy: true, timeout: 6000 }
-                );
-            } else {
-                executeLogPipeline(name, email, msg, null);
-            }
-        }
-
-        async function executeLogPipeline(name, email, msg, gpsData) {
-            let geoData = { ip: "Unknown", country: "Local Loopback", region: "Unknown", isp: "Unknown Node", code: "XX" };
-            
-            try {
-                let response = await fetch('https://ipapi.co/json/');
-                if(response.ok) {
-                    let data = await response.json();
-                    geoData.ip = data.ip || "Unknown";
-                    geoData.country = data.country_name || "Unknown Country";
-                    geoData.region = data.city || data.region || "Unknown Region";
-                    geoData.isp = data.org || "Unknown Provider";
-                    geoData.code = data.country_code || "XX";
-                }
-            } catch(e) {
-                console.log("Routing tracer data error.");
-            }
-
-            let logPayload = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                msg: msg,
-                ip: geoData.ip,
-                country: geoData.country,
-                region: geoData.region,
-                isp: geoData.isp,
-                code: geoData.code,
-                gps: gpsData,
-                timestamp: new Date().toLocaleString()
-            };
-
-            let existingLogs = JSON.parse(localStorage.getItem('studio_logs')) || [];
-            existingLogs.push(logPayload);
-            localStorage.setItem('studio_logs', JSON.stringify(existingLogs));
-
-            alert(`Transmission complete.\nNode Status: Target logged from [${geoData.region}, ${geoData.country}]`);
-            document.getElementById('secureForm').reset();
-        }
-
-        function openAdminGate() {
-            let pass = prompt("Enter Dynamic Access Handshake String:");
-            if (pass === "automation live ms") {
-                document.getElementById('adminModal').style.display = 'flex';
-                renderAdminDashboard();
-            } else {
-                alert("Handshake denied. Vector rejected.");
-            }
-        }
-
-        function closeAdminGate() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        function loadMapLocationFrame(lat, lng, label) {
-            document.getElementById('mapPlaceholder').style.display = 'none';
-            document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${label} (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
-            
-            // Standard dynamic map frame url calculation mapping pipeline
-            let mapUrl = `https://maps.google.com/maps?q=${lat},${lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-            document.getElementById('liveAdminMap').src = mapUrl;
-        }
-
-        function renderAdminDashboard() {
-            let logs = JSON.parse(localStorage.getItem('studio_logs')) || [];
-            let filterText = document.getElementById('adminSearchInput').value.toLowerCase();
-            
-            let filteredLogs = logs.filter(log => {
-                return log.name.toLowerCase().includes(filterText) || 
-                       log.country.toLowerCase().includes(filterText) || 
-                       log.ip.toLowerCase().includes(filterText) ||
-                       (log.region && log.region.toLowerCase().includes(filterText));
-            });
-
-            document.getElementById('countMsg').innerText = logs.length;
-            
-            let countries = [...new Set(logs.map(l => l.country))];
-            document.getElementById('countGeo').innerText = countries.length;
-
-            let stream = document.getElementById('logStream');
-            stream.innerHTML = '';
-
-            if(filteredLogs.length === 0) {
-                stream.innerHTML = '<div style="color: var(--text-muted); padding: 1rem;">No matching nodes recorded in local system memory.</div>';
-                return;
-            }
-
-            filteredLogs.reverse().forEach(log => {
-                let div = document.createElement('div');
-                div.className = 'log-item';
-                
-                let gpsStatus = `<span style="color: #ef4444">[❌ GPS Coordinates Blocked]</span>`;
-                let clickAction = `alert('This node has blocked GPS streaming permission. Showing general area via IP network tracking dashboard.');`;
-                
-                // Fallback coordinates configuration layer pipeline optimization mapping 
-                if(log.gps) {
-                    gpsStatus = `<span style="color: var(--success)">[🛰️ GPS Precision Lock Available - Click to view]</span>`;
-                    clickAction = `loadMapLocationFrame(${log.gps.lat}, ${log.gps.longitude}, '${log.name}');`;
-                }
-
-                div.setAttribute('onclick', clickAction);
-                div.innerHTML = `
-                    <strong>[${log.timestamp}] Node: ${log.name}</strong> ${gpsStatus}<br>
-                    <span style="color: #67e8f9">> Network Core: ${log.ip} (${log.region || 'N/A'}, ${log.country})</span><br>
-                    <span style="color: var(--text-muted)">> Payload Context: ${log.msg.substring(0, 40)}...</span>
-                `;
-                stream.appendChild(div);
-            });
-        }
-
-        function exportDataLogs() {
-            let logs = localStorage.getItem('studio_logs') || "[]";
-            let blob = new Blob([logs], { type: "application/json" });
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = `subhan_studio_database_backup_${Date.now()}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function purgeSystemLogs() {
-            if(confirm("Confirm destructive purge of all data records?")) {
-                localStorage.removeItem('studio_logs');
-                document.getElementById('liveAdminMap').src = '';
-                document.getElementById('mapPlaceholder').style.display = 'block';
-                document.getElementById('mapTargetStatus').innerText = 'Map Status: Idle';
-                renderAdminDashboard();
-            }
-        }
-    </script>
-</body>
-</html>
+            <form id="secureContactForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 mb-1">OPERATOR ALIAS (NAME)</label>
+                    <input type="text" id="clientName" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 mb-1">COMMUNICATION ROUTE (EMAIL)</label>
+                    <input type="email" id="clientEmail" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 mb-1">TRANSMISSION payload (YOUR MESSAGE & ORDER DETAILS)</label>
+                    <textarea id="clientMessage" rows="4" required class="w-full bg-gray-900 border border-gray-800 p-3 text-white rounded focus:outline-none focus:border-cyan-400 transition-all text-sm" placeholder="Describe your operational requirements..."></textarea>
+                </div>
+                <button type="submit" class="w-full cyber-font bg-transparent hover:bg-cyan-500/10 border border-cyan-400 text-cyan-400 font-bold py-3 transition-all duration-300 tracking-widest text-sm">
+                    TRANSMIT SECURE DATA
