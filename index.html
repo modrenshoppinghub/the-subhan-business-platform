@@ -564,7 +564,72 @@
             border-color: #ef4444;
             color: #ef4444;
         }
+
+        /* AI Floating Chat Widget Elements CSS */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 360px;
+            height: 450px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 150;
+        }
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            padding: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        .ai-chat-body {
+            flex: 1;
+            padding: 14px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .ai-msg { padding: 8px 12px; border-radius: 8px; max-width: 80%; line-height: 1.4; }
+        .ai-msg.user { background: var(--border); align-self: flex-end; color: white; }
+        .ai-msg.bot { background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); align-self: flex-start; color: white; }
+        .ai-chat-footer { padding: 10px; display: flex; gap: 8px; border-top: 1px solid var(--border); background: var(--bg-surface); }
+        
+        .ai-trigger-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+            z-index: 140;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("4NPC1SsXjFKhy9WR9"); 
+       })();
+    </script>
 </head>
 <body>
 
@@ -700,116 +765,6 @@
                     <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80" alt="Motion">
                 </div>
             </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Database</div>
-                    <h3>Vector Store Integration</h3>
-                    <p>Structuring high-dimensional tensor memory arrays inside deep AI models.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=400&q=80" alt="Vector DB">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Frameworks</div>
-                    <h3>Webflow Advanced Development</h3>
-                    <p>Dynamic engine layouts map fields linked natively to complex CMS logic portals.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1581291518655-9523c932dedf?auto=format&fit=crop&w=400&q=80" alt="Webflow">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Optimization</div>
-                    <h3>Edge Server Scaling</h3>
-                    <p>Deploying application script payloads directly onto cloud proxy endpoints.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" alt="Edge">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Networking</div>
-                    <h3>Zero-Trust Verification</h3>
-                    <p>Enforcing absolute identity rules inside enterprise system proxy gateways.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&q=80" alt="Security">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Data Layers</div>
-                    <h3>GraphQL Federation</h3>
-                    <p>Consolidating isolated application microservice objects into unified API maps.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=400&q=80" alt="GraphQL">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Architecture</div>
-                    <h3>Figma Token Pipelines</h3>
-                    <p>Automated design variable translation layers built directly for codebases.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=400&q=80" alt="Figma">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">E-Commerce</div>
-                    <h3>Headless Commerce Hubs</h3>
-                    <p>Decoupling user presentation maps from critical back-end processing pipelines.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=80" alt="Ecom">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Infrastructure</div>
-                    <h3>GitOps Automation</h3>
-                    <p>Synchronizing live system configurations natively through software tracking systems.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=400&q=80" alt="GitOps">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Analytics</div>
-                    <h3>Telemetry Interface Mapping</h3>
-                    <p>Processing user interaction points seamlessly inside enterprise dashboards.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Analytics">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Systems</div>
-                    <h3>Micro-Frontend Clustering</h3>
-                    <p>Breaking colossal layouts into standalone operating interface clusters.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=400&q=80" alt="Hardware">
-                </div>
-            </div>
         </div>
     </section>
 
@@ -895,230 +850,228 @@
         </div>
     </div>
 
+    <button class="ai-trigger-btn" onclick="toggleAiWidget()">🤖</button>
+    
+    <div class="ai-chat-widget" id="aiWidget">
+        <div class="ai-chat-header">
+            <span>🤖 STS Security & AI Core</span>
+            <button onclick="toggleAiWidget()" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-size: 1.2rem;">×</button>
+        </div>
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="ai-msg bot">Asalam-o-Alaikum! Main Subhan Technical Studio ka AI Core assistant hoon. Main aapko safe environment me premium design aur engineering skills ke mutalik mutmain karunga. Puchiye kya janna chahte hain?</div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" id="aiInput" class="form-control" placeholder="Ask AI anything..." style="padding: 8px 12px; height: 38px;" onkeypress="if(event.key === 'Enter') sendMsgToBackendAi()">
+            <button class="btn-submit" style="width: auto; margin: 0; padding: 0 16px; height: 38px;" onclick="sendMsgToBackendAi()">Send</button>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        const BACKEND_AI_URL = "/.netlify/functions/ai-route"; 
         let mapCoreInstance = null;
         let activeMapMarker = null;
-        let selectedLogIdForReply = null;
-        let selectedLogEmailForReply = null;
+        let selectedLogForReply = null;
 
-        function initializeMapCore(lat, lng) {
-            document.getElementById('mapPlaceholder').style.display = 'none';
-            
-            if (!mapCoreInstance) {
-                mapCoreInstance = L.map('liveAdminMap').setView([lat, lng], 13);
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                    maxZoom: 19
-                }).addTo(mapCoreInstance);
-            } else {
-                mapCoreInstance.setView([lat, lng], 13);
-            }
-
-            if (activeMapMarker) {
-                mapCoreInstance.removeLayer(activeMapMarker);
-            }
-
-            activeMapMarker = L.marker([lat, lng]).addTo(mapCoreInstance);
+        // --- AI CHAT CORE ENGINE ---
+        function toggleAiWidget() {
+            let widget = document.getElementById('aiWidget');
+            widget.style.display = widget.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function handleFormSubmission(event) {
+        async function sendMsgToBackendAi() {
+            let inputField = document.getElementById('aiInput');
+            let msg = inputField.value.trim();
+            if(!msg) return;
+
+            let chatBody = document.getElementById('aiChatBody');
+            chatBody.innerHTML += `<div class="ai-msg user">${msg}</div>`;
+            inputField.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
+            let lastLog = logs[logs.length - 1] || {};
+
+            try {
+                let response = await fetch(BACKEND_AI_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: msg,
+                        userIP: lastLog.ip || "Unknown Node",
+                        userCity: lastLog.city || "Unknown Segment"
+                    })
+                });
+
+                let data = await response.json();
+                chatBody.innerHTML += `<div class="ai-msg bot">${data.reply}</div>`;
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                if(data.threatDetected) {
+                    let securityAlertLog = {
+                        id: Date.now(),
+                        name: "AI INTERNAL IDS LAYER",
+                        email: "security@subhanstudio.local",
+                        msg: `🚨 [ALERT] Blocked malicious attempt: "${msg}"`,
+                        ip: lastLog.ip || "Intercepted",
+                        country: lastLog.country || "Local",
+                        city: lastLog.city || "System Firewall Core",
+                        lat: lastLog.lat || 24.8607,
+                        lon: lastLog.lon || 67.0011,
+                        isp: "System Firewall Core",
+                        timestamp: new Date().toLocaleString()
+                    };
+                    logs.push(securityAlertLog);
+                    localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
+                    if(document.getElementById('adminModal').style.display === 'flex') {
+                        renderAdminDashboard();
+                    }
+                }
+            } catch (error) {
+                chatBody.innerHTML += `<div class="ai-msg bot" style="color:#ef4444;">⚠️ Connection with AI Routing Core dropped.</div>`;
+            }
+        }
+
+        // --- HANDSHAKE LOGS ENGINE ---
+        async function handleFormSubmission(event) {
             event.preventDefault();
-            
             let name = document.getElementById('clientName').value;
             let email = document.getElementById('clientEmail').value;
             let msg = document.getElementById('clientMsg').value;
 
-            // Browser tracking permission triggers check
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        let gpsData = { lat: position.coords.latitude, lng: position.coords.longitude };
-                        await networkTrackerPipeline(name, email, msg, gpsData);
-                    },
-                    async () => {
-                        // Agar user location band bhi karde, backup pipeline automatic execute hoga aur city show hogi
-                        console.log("GPS Blocked. Engaging IP tracking fallback matrix.");
-                        await networkTrackerPipeline(name, email, msg, null);
-                    },
-                    { enableHighAccuracy: true, timeout: 5000 }
-                );
-            } else {
-                networkTrackerPipeline(name, email, msg, null);
-            }
-        }
-
-        async function networkTrackerPipeline(name, email, msg, gpsData) {
-            let trace = { ip: "127.0.0.1", country: "Pakistan", city: "Karachi", isp: "Local ISP Network Cluster" };
+            let trace = { ip: "127.0.0.1", country: "Pakistan", city: "Karachi", lat: 24.8607, lon: 67.0011, isp: "Local Standby Loop" };
             
             try {
                 let res = await fetch('https://ipapi.co/json/');
                 if (res.ok) {
                     let data = await res.json();
-                    trace.ip = data.ip || "Unknown";
-                    trace.country = data.country_name || "Pakistan";
-                    trace.city = data.city || data.region || "Karachi";
-                    trace.isp = data.org || "Network Backbone Node";
+                    trace.ip = data.ip;
+                    trace.country = data.country_name;
+                    trace.city = data.city;
+                    trace.lat = data.latitude;
+                    trace.lon = data.longitude;
+                    trace.isp = data.org;
                 }
-            } catch (e) { console.log("Handshake timeout."); }
+            } catch (e) { 
+                console.log("Telemetry engine offline."); 
+            }
 
             let logObject = {
                 id: Date.now(),
-                name: name,
-                email: email,
-                msg: msg,
-                ip: trace.ip,
-                country: trace.country,
-                city: trace.city,
-                isp: trace.isp,
-                gps: gpsData,
-                timestamp: new Date().toLocaleString(),
-                replies: []
+                name: name, email: email, msg: msg,
+                ip: trace.ip, country: trace.country, city: trace.city,
+                lat: trace.lat, lon: trace.lon, isp: trace.isp,
+                timestamp: new Date().toLocaleString()
             };
 
             let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
             logs.push(logObject);
             localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
 
-            alert(`Handshake Completed.\nRegistered Entry Node Area: [City: ${trace.city}, Country: ${trace.country}]`);
+            alert("Data Layer Registered Successfully.");
             document.getElementById('secureForm').reset();
         }
 
+        // --- ADMINISTRATIVE CONTROLS ---
         function openAdminGate() {
-            let token = prompt("Enter Administrative Access Passkey Token:");
-            if (token === "automation live ms") {
-                document.getElementById('adminModal').style.display = 'flex';
-                setTimeout(() => { if (mapCoreInstance) mapCoreInstance.invalidateSize(); }, 400);
-                renderAdminDashboard();
-            } else {
-                alert("Security mismatch. Authorization dropped.");
-            }
+            document.getElementById('adminModal').style.display = 'flex';
+            renderAdminDashboard();
+            setTimeout(() => { initializeDashboardMap(); }, 300);
         }
 
         function closeAdminGate() {
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        function selectActiveLogNode(id, name, email, city, country, lat, lng) {
-            selectedLogIdForReply = id;
-            selectedLogEmailForReply = email;
-            
-            document.getElementById('replyTargetLabel').innerText = `Target Node Focus: Active Session -> [Operator: ${name}]`;
-            document.getElementById('replyEmailLabel').innerText = `Destination Email: ${email}`;
-            
-            // UI styling highlight
-            document.querySelectorAll('.log-item').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            if (lat && lng) {
-                document.getElementById('mapTargetStatus').innerText = `Target Map Lock: ${name} Core [${lat.toFixed(4)}, ${lng.toFixed(4)}]`;
-                initializeMapCore(lat, lng);
-            } else {
-                // Agar GPS off ha to map placeholder text reset ho kar lazmi user ki trace city dikhayega
-                document.getElementById('mapTargetStatus').innerText = `Target City Route: ${city}, ${country} (GPS Disabled)`;
-                document.getElementById('mapPlaceholder').style.display = 'block';
-                document.getElementById('mapPlaceholder').innerText = `GPS Location signal is closed by user node. Tracking routed strictly through Network IP Hub infrastructure. Target Origin locked at: ${city}, ${country}.`;
-                if (mapCoreInstance) {
-                    mapCoreInstance.remove();
-                    mapCoreInstance = null;
-                }
-            }
-        }
-
-        function executeReplyTransmission() {
-            if (!selectedLogIdForReply) {
-                alert("Please select a target log node item from the streaming table first.");
-                return;
-            }
-            let replyText = document.getElementById('replyTextarea').value;
-            if (!replyText.trim()) {
-                alert("Reply text matrix cannot be transmitted empty.");
-                return;
-            }
-
-            let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
-            let targetNodeIndex = logs.findIndex(l => l.id === selectedLogIdForReply);
-
-            if (targetNodeIndex !== -1) {
-                if(!logs[targetNodeIndex].replies) logs[targetNodeIndex].replies = [];
-                logs[targetNodeIndex].replies.push({
-                    time: new Date().toLocaleString(),
-                    text: replyText
-                });
-                localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
-                
-                // Alert confirmation message confirming transmission went to user submitted exact email address
-                alert(`[TRANSMISSION SUCCESS]\n\nYour admin response has been securely transmitted and routed to user's registered inbox address:\n👉 ${selectedLogEmailForReply}`);
-                
-                document.getElementById('replyTextarea').value = '';
-                renderAdminDashboard();
-            }
-        }
-
         function renderAdminDashboard() {
             let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
             document.getElementById('countMsg').innerText = logs.length;
             
-            let regions = [...new Set(logs.map(l => l.country))];
-            document.getElementById('countGeo').innerText = regions.length;
+            let distinctCities = [...new Set(logs.map(l => l.city))];
+            document.getElementById('countGeo').innerText = distinctCities.length;
 
-            if (logs.length > 0) {
+            if(logs.length > 0) {
                 let last = logs[logs.length - 1];
                 document.getElementById('lastNodeIP').innerText = last.ip;
-                document.getElementById('lastNodeISP').innerText = last.isp;
+                document.getElementById('lastNodeISP').innerText = last.isp || "Unknown Backbone";
             }
 
-            let stream = document.getElementById('logStream');
-            stream.innerHTML = '';
+            let logStream = document.getElementById('logStream');
+            logStream.innerHTML = '';
 
-            if (logs.length === 0) {
-                stream.innerHTML = `<div style="color:var(--text-secondary); padding:12px;">Memory register pipelines vacant. Awaiting incoming nodes.</div>`;
+            logs.reverse().forEach(log => {
+                let item = document.createElement('div');
+                item.className = 'log-item';
+                item.innerHTML = `<strong>[${log.timestamp}] ${log.name}</strong><br><span style="color:var(--accent-cyan); font-size:0.75rem;">${log.ip} (${log.city})</span><p style="margin-top:4px; color:var(--text-secondary);">${log.msg}</p>`;
+                item.onclick = () => selectNodeLog(log, item);
+                logStream.appendChild(item);
+            });
+        }
+
+        function selectNodeLog(log, element) {
+            document.querySelectorAll('.log-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            selectedLogForReply = log;
+            document.getElementById('replyTargetLabel').innerText = `Target Node ID: ${log.id} (${log.name})`;
+            document.getElementById('replyEmailLabel').innerText = `Destination Email: ${log.email}`;
+
+            document.getElementById('mapPlaceholder').style.display = 'none';
+            document.getElementById('mapTargetStatus').innerText = `Target Selected: Lat: ${log.lat} / Lon: ${log.lon} [${log.city}, ${log.country}]`;
+
+            if(mapCoreInstance) {
+                mapCoreInstance.setView([log.lat, log.lon], 11);
+                if(activeMapMarker) mapCoreInstance.removeLayer(activeMapMarker);
+                activeMapMarker = L.marker([log.lat, log.lon]).addTo(mapCoreInstance)
+                    .bindPopup(`<b>Operator:</b> ${log.name}<br><b>City:</b> ${log.city}`)
+                    .openPopup();
+            }
+        }
+
+        function initializeDashboardMap() {
+            if (!mapCoreInstance) {
+                mapCoreInstance = L.map('liveAdminMap').setView([24.8607, 67.0011], 4);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(mapCoreInstance);
+            }
+        }
+
+        function executeReplyTransmission() {
+            if(!selectedLogForReply) {
+                alert("Please select a tracking log node from the stream first.");
                 return;
             }
+            let text = document.getElementById('replyTextarea').value.trim();
+            if(!text) return;
 
-            [...logs].reverse().forEach(log => {
-                let div = document.createElement('div');
-                div.className = 'log-item' + (selectedLogIdForReply === log.id ? ' active' : '');
-                
-                let lat = log.gps ? log.gps.lat : null;
-                let lng = log.gps ? log.gps.lng : null;
-                
-                div.addEventListener('click', (e) => selectActiveLogNode(log.id, log.name, log.email, log.city, log.country, lat, lng));
-
-                let replySegments = '';
-                if(log.replies && log.replies.length > 0) {
-                    log.replies.forEach(rep => {
-                        replySegments += `<div style="margin-top:6px; padding-left:12px; border-left:2px solid var(--accent-amber); color:var(--accent-amber); font-size:0.75rem;">↳ [Reply Sent to: ${log.email} at ${rep.time}]: ${rep.text}</div>`;
-                    });
-                }
-
-                // City hamesha lazmi yahan tracker line dashboard stream logs me visible show hogi chahe location band ho.
-                div.innerHTML = `
-                    <span style="color:var(--accent-purple)">[${log.timestamp}]</span> <strong>Operator: ${log.name}</strong> 
-                    ${log.gps ? '<span style="color:var(--accent-emerald)">[🛰️ GPS Precision Lock]</span>' : '<span style="color:var(--accent-amber)">[🛰️ IP Geo Lock Mode]</span>'}<br>
-                    <span style="color:var(--accent-cyan)">&gt; Trace Gateway Location: ${log.city}, ${log.country} (IP: ${log.ip})</span><br>
-                    <span style="color:var(--text-secondary)">&gt; User Submitted Inbox: ${log.email}</span><br>
-                    <span style="color:rgba(255,255,255,0.9)">&gt; Payload Msg Context: ${log.msg}</span>
-                    ${replySegments}
-                `;
-                stream.appendChild(div);
+            // EmailJS automated action layer
+            emailjs.send("service_x3tbyw6", "template_stwhxof", {
+                to_name: selectedLogForReply.name,
+                to_email: selectedLogForReply.email,
+                admin_reply: text,
+                original_msg: selectedLogForReply.msg
+            }).then(() => {
+                alert("Administrative response package transmitted via email!");
+                document.getElementById('replyTextarea').value = '';
+            }).catch((err) => {
+                alert("Transmission pipeline failure. Check network console.");
+                console.error(err);
             });
         }
 
         function purgeSystemLogs() {
-            if (confirm("Execute wiping configurations across systemic memory tables?")) {
+            if(confirm("Confirm hard reset wipe across local local registers?")) {
                 localStorage.removeItem('subhan_studio_v4_logs');
-                selectedLogIdForReply = null;
-                selectedLogEmailForReply = null;
-                document.getElementById('replyTargetLabel').innerText = 'Target: None selected';
-                document.getElementById('replyEmailLabel').innerText = 'Destination Email: N/A';
-                document.getElementById('mapPlaceholder').style.display = 'block';
-                document.getElementById('mapPlaceholder').innerText = 'Click any captured telemetry data package log on the left stream grid to map location coordinate dimensions inside this dashboard.';
-                document.getElementById('mapTargetStatus').innerText = 'Office Map Core: Standby';
-                if (mapCoreInstance) {
-                    mapCoreInstance.remove();
-                    mapCoreInstance = null;
-                }
                 renderAdminDashboard();
+                if(activeMapMarker && mapCoreInstance) {
+                    mapCoreInstance.removeLayer(activeMapMarker);
+                }
+                document.getElementById('mapPlaceholder').style.display = 'block';
+                document.getElementById('mapTargetStatus').innerText = "Office Map Core: Awaiting System Node Selection...";
+                selectedLogForReply = null;
+                document.getElementById('replyTargetLabel').innerText = "Target: None selected";
+                document.getElementById('replyEmailLabel').innerText = "Destination Email: N/A";
             }
         }
     </script>
