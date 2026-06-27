@@ -1,0 +1,64 @@
+// Change this to your deployed Vercel URL once deployed
+const BACKEND_AI_URL = "/api/ai-route"; 
+
+function toggleAiWidget() {
+    let widget = document.getElementById('aiWidget');
+    widget.style.display = widget.style.display === 'flex' ? 'none' : 'flex';
+}
+
+async function sendMsgToBackendAi() {
+    let inputField = document.getElementById('aiInput');
+    let msg = inputField.value.trim();
+    if(!msg) return;
+
+    // Display user message in chat
+    let chatBody = document.getElementById('aiChatBody');
+    chatBody.innerHTML += `<div class="ai-msg user">${msg}</div>`;
+    inputField.value = '';
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Fetch telemetry data from local storage to give AI maximum context
+    let logs = JSON.parse(localStorage.getItem('subhan_studio_v4_logs')) || [];
+    let lastLog = logs[logs.length - 1] || {};
+
+    try {
+        let response = await fetch(BACKEND_AI_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: msg,
+                userIP: lastLog.ip || "Unknown IP",
+                userCity: lastLog.city || "Unknown City",
+                context: "User interacting with portfolio trending skills array matrix."
+            })
+        });
+
+        let data = await response.json();
+        
+        // Show AI Response
+        chatBody.innerHTML += `<div class="ai-msg bot">${data.reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // If AI detects a threat, push it instantly to admin dashboard logs
+        if(data.threatDetected) {
+            let securityAlertLog = {
+                id: Date.now(),
+                name: "AI INTERNAL IDS LAYER",
+                email: "security@subhanstudio.local",
+                msg: `🚨 [ALERT] Blocked malicious attempt: "${msg}"`,
+                ip: lastLog.ip || "Intercepted",
+                country: lastLog.country || "Local",
+                city: lastLog.city || "System Firewall Core",
+                timestamp: new Date().toLocaleString()
+            };
+            logs.push(securityAlertLog);
+            localStorage.setItem('subhan_studio_v4_logs', JSON.stringify(logs));
+            if(document.getElementById('adminModal').style.display === 'flex') {
+                renderAdminDashboard();
+            }
+        }
+
+    } catch (error) {
+        chatBody.innerHTML += `<div class="ai-msg bot" style="color:#ef4444;">⚠️ Connection with AI Routing Core dropped.</div>`;
+    }
+}
