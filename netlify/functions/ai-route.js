@@ -19,7 +19,8 @@ export const handler = async (event, context) => {
     }
 
     try {
-        const { message, userIP, userCity } = JSON.parse(event.body);
+        // 🌟 Frontend se 'history' array bhi receive karenge
+        const { message, history, userIP, userCity } = JSON.parse(event.body);
 
         // 🛡️ BASIC BACKEND SECURITY CHECK
         if (!message || message.includes("<script>") || message.length > 500) {
@@ -58,12 +59,24 @@ export const handler = async (event, context) => {
         - Locked City: ${userCity || 'Unknown'}
         `;
 
+        // 🛠️ History setup: Agar frontend se history aayi hai to use use karenge, nahi to khali array
+        // Expected format for history: [{ role: "user", parts: [{ text: "..." }] }, { role: "model", parts: [{ text: "..." }] }]
+        let formattedContents = [];
+
+        if (history && Array.isArray(history) && history.length > 0) {
+            formattedContents = [...history];
+        }
+
+        // Naya message contents array ke end mein push karen gae
+        formattedContents.push({ role: "user", parts: [{ text: message }] });
+
         const response = await aiInstance.models.generateContent({
             model: "gemini-1.5-flash",
-            contents: [
-                { role: "user", parts: [{ text: systemPrompt }] },
-                { role: "user", parts: [{ text: message }] }
-            ]
+            config: {
+                // System instruction ko sahi object parameter mein pass karna behtar hai
+                systemInstruction: systemPrompt 
+            },
+            contents: formattedContents
         });
 
         return {
