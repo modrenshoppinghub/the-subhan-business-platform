@@ -1,7 +1,9 @@
-the-subhan-business-platform/
+my-project/
 │
 ├── netlify/
 │   └── functions/
-│       └── ai-route.js       <-- (Aapka Backend AI Engine)
+│       └── ai-route.js       <-- Backend (Netlify Function)
 │
-└── index.html                <-- (Aapki Main Website + Chat UI)
+├── index.html                <-- Frontend HTML
+├── style.css                 <-- Frontend CSS
+└── netlify.toml              <-- Netlify Config File
