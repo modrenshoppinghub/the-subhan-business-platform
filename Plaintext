@@ -1,0 +1,7 @@
+the-subhan-business-platform/
+│
+├── netlify/
+│   └── functions/
+│       └── ai-route.js       <-- (Aapka Backend AI Engine)
+│
+└── index.html                <-- (Aapki Main Website + Chat UI)
