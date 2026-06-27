@@ -1,0 +1,6 @@
+subhan-studio-hub/
+│
+├── api/
+│   └── ai-route.js       <-- (Backend Serverless Function)
+│
+└── index.html            <-- (Aapki main website frontend file)
