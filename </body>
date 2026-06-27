@@ -1,0 +1,14 @@
+<button class="ai-trigger-btn" onclick="toggleAiWidget()">🤖</button>
+<div class="ai-chat-widget" id="aiWidget">
+    <div class="ai-chat-header">
+        <span>🤖 STS Security & AI Agent</span>
+        <button onclick="toggleAiWidget()" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold;">X</button>
+    </div>
+    <div class="ai-chat-body" id="aiChatBody">
+        <div class="ai-msg bot">Asalam-o-Alaikum! Main Subhan Technical Studio ka AI Assistant hoon. Main aapko trending skills seekhne me aur security verify karne me help kar sakta hoon.</div>
+    </div>
+    <div class="ai-chat-footer">
+        <input type="text" id="aiInput" class="form-control" placeholder="Ask AI anything..." style="padding: 8px 12px;" onkeypress="if(event.key === 'Enter') sendMsgToBackendAi()">
+        <button class="btn-reply" style="align-self:center; padding: 8px 12px;" onclick="sendMsgToBackendAi()">Send</button>
+    </div>
+</div>
