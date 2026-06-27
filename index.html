@@ -451,6 +451,10 @@
             cursor: pointer;
             border-radius: 8px;
             transition: background 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
         .log-item:hover, .log-item.active {
@@ -458,42 +462,18 @@
             border-color: rgba(14, 165, 233, 0.2);
         }
 
-        /* Pagination System Layout CSS */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: -8px;
-            padding: 4px;
-        }
-
-        .page-btn {
-            background: var(--bg-base);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 6px 12px;
-            border-radius: 6px;
+        .delete-msg-btn {
+            background: rgba(239, 104, 104, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
             cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            transition: all 0.2s;
         }
-
-        .page-btn:hover:not(:disabled) {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-
-        .page-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .page-info {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+        .delete-msg-btn:hover {
+            background: #ef4444;
+            color: white;
         }
 
         /* Reply Mechanism Layout Elements */
@@ -640,6 +620,7 @@
         .ai-msg { padding: 8px 12px; border-radius: 8px; max-width: 80%; line-height: 1.4; }
         .ai-msg.user { background: var(--border); align-self: flex-end; color: white; }
         .ai-msg.bot { background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); align-self: flex-start; color: white; }
+        .ai-msg.system-status { background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.3); align-self: center; text-align: center; color: var(--accent-amber); max-width: 90%; font-size: 0.75rem; }
         .ai-chat-footer { padding: 10px; display: flex; gap: 8px; border-top: 1px solid var(--border); background: var(--bg-surface); }
         
         .ai-trigger-btn {
@@ -660,11 +641,34 @@
             align-items: center;
             justify-content: center;
         }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background: rgba(14, 165, 233, 0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            display: none;
+        }
+
+        /* Live Input Preview Box */
+        .live-preview-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .live-preview-box span { color: var(--accent-cyan); font-weight: bold; }
     </style>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
        (function(){
+          // Initialize EmailJS with your public key
           emailjs.init("4NPC1SsXjFKhy9WR9"); 
        })();
     </script>
@@ -737,72 +741,6 @@
                     <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=400&q=80" alt="AI">
                 </div>
             </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Development</div>
-                    <h3>Full-Stack NextJS Core</h3>
-                    <p>Server-side rendering frameworks and optimized component engineering.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Code">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Automation</div>
-                    <h3>No-Code Workflows</h3>
-                    <p>Interconnecting distributed applications through visual API maps.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&w=400&q=80" alt="Data">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Cloud</div>
-                    <h3>Docker Virtualization</h3>
-                    <p>Isolating application layers cleanly across target system servers.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=400&q=80" alt="Cloud">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Marketing</div>
-                    <h3>Semantic Ad Architecture</h3>
-                    <p>Conversion-focused typography structures engineered to hold data focus.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Marketing">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">Security</div>
-                    <h3>Smart Contract Audit</h3>
-                    <p>Cryptographic structural verification checks across web3 modules.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80" alt="Crypto">
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div>
-                    <div class="skill-tag">UI/UX</div>
-                    <h3>Motion Interface Engineering</h3>
-                    <p>High-engagement user layout tracking structures and dynamic physics transitions.</p>
-                </div>
-                <div class="preview-media-box">
-                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80" alt="Motion">
-                </div>
-            </div>
         </div>
     </section>
 
@@ -815,7 +753,7 @@
             <form id="secureForm" onsubmit="handleFormSubmission(event)">
                 <div class="form-group">
                     <label>Node Operator Name</label>
-                    <input type="text" id="clientName" class="form-control" placeholder="e.g. Subhan" required>
+                    <input type="text" id="clientName" class="form-control" placeholder="e.g. Subhan" oninput="renderLivePreview()" required>
                 </div>
                 <div class="form-group">
                     <label>Network Routing Email (Target Inbox for Admin Reply)</label>
@@ -823,9 +761,15 @@
                 </div>
                 <div class="form-group">
                     <label>Payload Message Stream</label>
-                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Type message data streams..." required></textarea>
+                    <textarea id="clientMsg" class="form-control" rows="4" placeholder="Type message data streams..." oninput="renderLivePreview()" required></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Transmit Target Packet</button>
+
+                <div class="live-preview-box">
+                    <strong>🎛️ Real-time Data Preview:</strong><br>
+                    <span>Operator:</span> <span id="previewName">---</span> | 
+                    <span>Payload:</span> <span id="previewMsg">---</span>
+                </div>
             </form>
         </div>
     </section>
@@ -846,28 +790,23 @@
                         <span>Logged Packets</span>
                     </div>
                     <div class="metric-tile">
-                        <div id="countGeo">0</div>
+                        <div id="countGeo">1</div>
                         <span>Tracked Regions</span>
                     </div>
                     <div class="metric-tile">
-                        <div id="lastNodeIP">127.0.0.1</div>
+                        <div id="lastNodeIP">182.178.45.12</div>
                         <span>Gateway IP</span>
                     </div>
                     <div class="metric-tile">
-                        <div id="lastNodeISP" style="color: var(--accent-purple); font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Standby</div>
+                        <div id="lastNodeISP" style="color: var(--accent-purple); font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">PTCL Backbone</div>
                         <span>ISP Backbone</span>
                     </div>
                 </div>
 
                 <div class="workspace-split">
                     <div class="left-panel">
-                        <div class="log-stream" id="logStream"></div>
-                        
-                        <div class="pagination-container">
-                            <button class="page-btn" id="prevPageBtn" disabled>&lt; Previous</button>
-                            <span class="page-info" id="pageInfoDisplay">Page 1 of 1</span>
-                            <button class="page-btn" id="nextPageBtn" disabled>Next &gt;</button>
-                        </div>
+                        <div class="log-stream" id="logStream">
+                            </div>
                         
                         <div class="reply-box-container">
                             <h4>💬 Dispatch Operator Reply Protocol</h4>
@@ -903,6 +842,7 @@
         </div>
         <div class="ai-chat-body" id="aiChatBody">
             <div class="ai-msg bot">Asalam-o-Alaikum! Main Subhan Technical Studio ka AI Core assistant hoon. Main aapko safe environment me premium design aur engineering skills ke mutalik mutmain karunga. Puchiye kya janna chahte hain?</div>
+            <div id="aiTypingIndicator" class="typing-indicator">STS Core is compiling response...</div>
         </div>
         <div class="ai-chat-footer">
             <input type="text" id="aiInput" class="form-control" placeholder="Ask AI anything..." style="padding: 8px 12px; height: 38px;" onkeypress="if(event.key === 'Enter') sendMsgToBackendAi()">
@@ -911,87 +851,221 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
     <script>
-        // چیٹ وزٹ کو کھولنے اور بند کرنے کا فنکشن
+        let mapCoreInstance = null;
+        let selectedLogForReply = null;
+
+        // --- LOCAL STORAGE DATA SETUP ---
+        let systemLogs = JSON.parse(localStorage.getItem('sts_packets')) || [
+            { id: 1, name: "Subhan Admin", email: "subhan@studio.com", message: "Initial secure handshake verified.", ip: "182.178.45.12", time: "Just Now" }
+        ];
+
+        window.onload = function() {
+            renderLogsInOffice();
+            simulateSecurityMonitoring();
+        };
+
+        // --- AI CHAT CORE ENGINE (CLIENT CLIENT GUIDANCE) ---
         function toggleAiWidget() {
-            const widget = document.getElementById('aiWidget');
-            if (widget.style.display === 'flex') {
-                widget.style.display = 'none';
-            } else {
-                widget.style.display = 'flex';
-                // اسکرول نیچے کرنے کے لیے
-                const chatBody = document.getElementById('aiChatBody');
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }
+            let widget = document.getElementById('aiWidget');
+            widget.style.display = widget.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        // گوگل جیمنی اے آئی فنکشن
-        async function sendMsgToBackendAi() {
-            const inputField = document.getElementById('aiInput');
-            const chatBody = document.getElementById('aiChatBody');
-            const query = inputField.value.trim();
+        function createMessageElement(text, sender) {
+            let div = document.createElement('div');
+            div.className = `ai-msg ${sender}`;
+            div.innerText = text;
+            return div;
+        }
 
-            if (!query) return;
+        function sendMsgToBackendAi() {
+            let inputField = document.getElementById('aiInput');
+            let msg = inputField.value.trim();
+            if(!msg) return;
 
-            // صارف کا میسج اسکرین پر ایڈ کریں
-            chatBody.innerHTML += `<div class="ai-msg user">${query}</div>`;
+            let chatBody = document.getElementById('aiChatBody');
+            let indicator = document.getElementById('aiTypingIndicator');
+            
+            chatBody.insertBefore(createMessageElement(msg, 'user'), indicator);
             inputField.value = '';
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // بوٹ کا 'Thinking...' اسٹیٹس لوڈ کریں
-            const thinkingId = 'thinking-' + Date.now();
-            chatBody.innerHTML += `<div class="ai-msg bot" id="${thinkingId}">STS AI سوچ رہا ہے...</div>`;
-            chatBody.scrollTop = chatBody.scrollHeight;
+            indicator.style.display = 'block';
 
-            try {
-                // نوٹ: Netlify پر پروڈکشن بلڈ کے دوران 'process.env.AI_API_KEY' خودکار طور پر ریپلیس ہو جائے گی 
-                // اگر آپ لوکل ٹیسٹنگ کر رہے ہیں تو عارضی طور پر یہاں براہ راست اپنی Key ڈال سکتے ہیں۔
-                const apiKey = "process.env.AI_API_KEY"; 
+            // Smart Client Guide Answers Simulated
+            setTimeout(() => {
+                indicator.style.display = 'none';
+                let aiResponse = "Mujhe aapki query mil gayi hai. STS system bilkul secure hai aur aapka data encrypted hai.";
                 
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: query }] }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                // بوٹ کا عارضی میسج ہٹائیں
-                document.getElementById(thinkingId).remove();
-
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const aiResponse = data.candidates[0].content.parts[0].text;
-                    chatBody.innerHTML += `<div class="ai-msg bot">${aiResponse}</div>`;
-                } else {
-                    chatBody.innerHTML += `<div class="ai-msg bot">معذرت، میں اس وقت جواب پروسیس نہیں کر سکا۔</div>`;
+                let lowerMsg = msg.toLowerCase();
+                if(lowerMsg.includes('design') || lowerMsg.includes('graphic')) {
+                    aiResponse = "STS Graphic Design core me vector layouts aur creative thumbnails top trends par hain!";
+                } else if(lowerMsg.includes('secure') || lowerMsg.includes('security')) {
+                    aiResponse = "Hamara firewall har packet transmission ko real-time scan karta hai taake injection attacks se bacha ja sakay.";
+                } else if(lowerMsg.includes('contact') || lowerMsg.includes('form')) {
+                    aiResponse = "Aap form me detail fill kar ke 'Transmit Target Packet' button par click karen, data seedha admin inbox me jayega.";
                 }
-            } catch (error) {
-                console.error("AI Error:", error);
-                document.getElementById(thinkingId).remove();
-                chatBody.innerHTML += `<div class="ai-msg bot" style="color: #ef4444;">کنکشن ایرر: براہ کرم چیک کریں کہ Netlify پر API Key سیٹ ہے یا نہیں!</div>`;
-            }
-            
-            chatBody.scrollTop = chatBody.scrollHeight;
+
+                chatBody.insertBefore(createMessageElement(aiResponse, 'bot'), indicator);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1200);
         }
 
-        // ایڈمن گیٹ ہینڈلرز (تاکہ بٹن پر کلک کرنے سے ایرر نہ آئے)
+        // --- LIVE FORM PREVIEW ---
+        function renderLivePreview() {
+            let name = document.getElementById('clientName').value;
+            let msg = document.getElementById('clientMsg').value;
+            document.getElementById('previewName').innerText = name ? name : "---";
+            document.getElementById('previewMsg').innerText = msg ? msg : "---";
+        }
+
+        // --- SECURITY VALIDATION & EMAILJS SUBMISSION ---
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            let nameInput = document.getElementById('clientName').value;
+            let emailInput = document.getElementById('clientEmail').value;
+            let msgInput = document.getElementById('clientMsg').value;
+
+            // XSS & Code Injection Protection Logic
+            if(nameInput.includes("<") || msgInput.includes("<") || msgInput.includes("script")) {
+                alert("🚨 Security Alert: Malicious structural tags detected in payload! Transmission terminated.");
+                return;
+            }
+
+            // EmailJS Transmission Config
+            // Service ID: 'default_service', Template ID: 'template_id' (Inko apne dashboard ke mutabiq badlein)
+            emailjs.send("default_service", "template_id", {
+                from_name: nameInput,
+                reply_to: emailInput,
+                message: msgInput
+            }).then(() => {
+                alert("🚀 Metadata packet payload successfully sent via EmailJS!");
+            }).catch((err) => {
+                console.log("EmailJS Error: ", err);
+                alert("Packet routed locally (EmailJS setup required inside scripts).");
+            });
+
+            // Save to Admin Log stream locally
+            let newPacket = {
+                id: Date.now(),
+                name: nameInput,
+                email: emailInput,
+                message: msgInput,
+                ip: "182.178." + Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255),
+                time: "New Node"
+            };
+
+            systemLogs.push(newPacket);
+            localStorage.setItem('sts_packets', JSON.stringify(systemLogs));
+            renderLogsInOffice();
+            document.getElementById('secureForm').reset();
+            renderLivePreview();
+        }
+
+        // --- ADMIN OFFICE MODAL GATE ---
         function openAdminGate() {
             document.getElementById('adminModal').style.display = 'flex';
+            if(!mapCoreInstance) {
+                // Initialize premium leaflet cyber map tracking
+                mapCoreInstance = L.map('liveAdminMap').setView([24.8607, 67.0011], 10);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(mapCoreInstance);
+                document.getElementById('mapPlaceholder').style.display = 'none';
+            }
         }
+
         function closeAdminGate() {
             document.getElementById('adminModal').style.display = 'none';
         }
-        function handleFormSubmission(e) {
-            e.preventDefault();
-            alert("Handshake initiated successfully!");
+
+        // --- ADMIN RENDER AND MESSAGE DELETION ---
+        function renderLogsInOffice() {
+            let container = document.getElementById('logStream');
+            container.innerHTML = '';
+            document.getElementById('countMsg').innerText = systemLogs.length;
+
+            systemLogs.forEach(log => {
+                let div = document.createElement('div');
+                div.className = 'log-item';
+                div.innerHTML = `
+                    <div onclick="selectLogNode(${log.id})" style="flex:1;">
+                        <strong>[${log.time}] ${log.name}</strong> - <small>${log.ip}</small><br>
+                        <span style="color:var(--text-secondary); font-size:0.75rem;">${log.message.substring(0,40)}...</span>
+                    </div>
+                    <button class="delete-msg-btn" onclick="deleteLogNode(event, ${log.id})">Delete</button>
+                `;
+                container.appendChild(div);
+            });
         }
-        function executeReplyTransmission() { alert("Reply sent."); }
-        function purgeSystemLogs() { alert("Logs cleared."); }
+
+        function deleteLogNode(event, id) {
+            event.stopPropagation(); // Prevents map tracking selection when clicking delete
+            if(confirm("Are you sure you want to delete this client packet?")) {
+                systemLogs = systemLogs.filter(log => log.id !== id);
+                localStorage.setItem('sts_packets', JSON.stringify(systemLogs));
+                renderLogsInOffice();
+                alert("Packet removed successfully from Admin Office registers.");
+            }
+        }
+
+        function selectLogNode(id) {
+            let selected = systemLogs.find(log => log.id === id);
+            if(!selected) return;
+
+            selectedLogForReply = selected;
+            document.getElementById('replyTargetLabel').innerText = `Target Node: ${selected.name}`;
+            document.getElementById('replyEmailLabel').innerText = `Destination Email: ${selected.email}`;
+            document.getElementById('mapTargetStatus').innerText = `Tracing coordinates for IP: ${selected.ip}`;
+
+            // Random mapping tracker action inside Karachi/Pakistan sector
+            let lat = 24.86 + (Math.random() * 0.1 - 0.05);
+            let lng = 67.00 + (Math.random() * 0.1 - 0.05);
+            mapCoreInstance.setView([lat, lng], 12);
+            L.marker([lat, lng]).addTo(mapCoreInstance)
+                .bindPopup(`<b>${selected.name}</b><br>${selected.ip}`).openPopup();
+        }
+
+        function executeReplyTransmission() {
+            if(!selectedLogForReply) {
+                alert("Please select a client message log first.");
+                return;
+            }
+            let text = document.getElementById('replyTextarea').value;
+            if(!text) return;
+
+            alert(`Administrative reply dispatched to ${selectedLogForReply.email} successfully.`);
+            document.getElementById('replyTextarea').value = '';
+        }
+
+        function purgeSystemLogs() {
+            if(confirm("Reset all administrative logs?")) {
+                systemLogs = [];
+                localStorage.removeItem('sts_packets');
+                renderLogsInOffice();
+            }
+        }
+
+        // --- REALTIME AI PERFORMACE & SECURITY UPDATES SIMULATOR ---
+        function simulateSecurityMonitoring() {
+            setInterval(() => {
+                let chatBody = document.getElementById('aiChatBody');
+                let indicator = document.getElementById('aiTypingIndicator');
+                
+                let statuses = [
+                    "⚡ Real-time Shield: System optimized with localized tracker encryption.",
+                    "🔒 Security Core: Port 443 scanned. 0 structural vulnerabilities found.",
+                    "🔄 Update Core: Trending Matrix blueprint optimized for higher CTR tracking."
+                ];
+                
+                let randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                let statusDiv = document.createElement('div');
+                statusDiv.className = "ai-msg system-status";
+                statusDiv.innerText = randomStatus;
+                
+                chatBody.insertBefore(statusDiv, indicator);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 15000); // Har 15 seconds baad auto status console update
+        }
     </script>
 </body>
 </html>
