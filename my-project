@@ -1,0 +1,12 @@
+my-project/
+├── api/                  <-- (ZAROORI) Saara backend/serverless code yahan aayega
+│   ├── login.js
+│   └── user.js
+├── public/               <-- Aapki static images aur assets
+│   └── favicon.ico
+├── src/                  <-- Aapka frontend (React/Vite) ka code
+│   ├── components/
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── vercel.json           <-- (ZAROORI) Vercel ki configuration file
